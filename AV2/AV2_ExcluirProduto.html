@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Excluir um Produto</title>
+    <style>
+
+        table,tr,th,td {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+    <script>
+
+
+        function enviaForm() {
+            let objProduto = document.getElementById("formProduto");
+            let cod = document.getElementById("cod");
+
+            erro = validaCodigo(cod);
+
+
+            if (erro == 0) {
+                let xmlhttp = new XMLHttpRequest();
+
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+
+
+                        if(JSON.parse(this.responseText) != "Não existe produto com o código correspondente!") {
+                            let result = JSON.parse(this.responseText);
+                            var table = document.getElementById("table")
+
+                            var linha = document.createElement("tr");
+                            var campo_cod = document.createElement("td");
+                            var campo_nome = document.createElement("td");
+                            var campo_fabr = document.createElement("td");
+                            var campo_cat = document.createElement("td");
+                            var campo_tipo = document.createElement("td");
+                            var campo_preco = document.createElement("td");
+                            var campo_est = document.createElement("td");
+                            var campo_peso = document.createElement("td");
+                            var campo_desc = document.createElement("td");
+                            var campo_link = document.createElement("td");
+                            var campo_data = document.createElement("td");
+
+
+                            var texto_cod = document.createTextNode(result[0]);
+                            var texto_nome = document.createTextNode(result[1]);
+                            var texto_fabr = document.createTextNode(result[2]);
+                            var texto_cat = document.createTextNode(result[3]);
+                            var texto_tipo = document.createTextNode(result[4]);
+                            var texto_preco = document.createTextNode(result[5]);
+                            var texto_est = document.createTextNode(result[6]);
+                            var texto_peso = document.createTextNode(result[7]);
+                            var texto_desc = document.createTextNode(result[8]);
+                            var texto_link = document.createTextNode(result[9]);
+                            var texto_data = document.createTextNode(result[10]);
+
+                            campo_cod.appendChild(texto_cod);
+                            campo_nome.appendChild(texto_nome);
+                            campo_fabr.appendChild(texto_fabr);
+                            campo_cat.appendChild(texto_cat);
+                            campo_tipo.appendChild(texto_tipo);
+                            campo_preco.appendChild(texto_preco);
+                            campo_est.appendChild(texto_est);
+                            campo_peso.appendChild(texto_peso);
+                            campo_desc.appendChild(texto_desc);
+                            campo_link.appendChild(texto_link);
+                            campo_data.appendChild(texto_data);
+
+                            linha.appendChild(campo_cod);
+                            linha.appendChild(campo_nome)
+                            linha.appendChild(campo_fabr)
+                            linha.appendChild(campo_cat);
+                            linha.appendChild(campo_tipo)
+                            linha.appendChild(campo_preco);
+                            linha.appendChild(campo_est);
+                            linha.appendChild(campo_peso)
+                            linha.appendChild(campo_desc)
+                            linha.appendChild(campo_link)
+                            linha.appendChild(campo_data)
+
+                            table.appendChild(linha);
+
+                            var form = document.getElementById("formProduto");
+                            var button = document.createElement('button');
+                            button.setAttribute('type','submit')
+                            button.appendChild(document.createTextNode('Deseja realmente excluir?'));
+                            form.appendChild(button);
+
+                        }
+                        else
+                        {
+                            document.getElementById("resposta").innerHTML = JSON.parse(this.responseText);
+                        }
+
+
+                    }
+
+                }
+
+
+                xmlhttp.open("GET", "http://localhost/3daw/AV2_ExcluirUmProduto.php?codigo=" + objProduto.cod.value, true);
+                xmlhttp.send();
+
+            }
+
+            function validaCodigo(cod) {
+                let erro = 0;
+                if (cod.value.length == 13) {
+                    document.getElementById("resposta").innerHTML = "OK!<br>";
+                } else {
+                    document.getElementById("resposta").innerHTML = "Código inválido!<br>";
+                    erro = 1;
+                }
+                return (erro);
+
+            }
+        }
+
+
+
+    </script>
+</head>
+<body>
+<a href="AV2_MENU.html">VOLTAR</a>
+<form action="AV2_ConfirmaExclusão.php" method="post" name="produto" id="formProduto">
+    <fieldset name="identificação">
+        <legend>Excluir um Produto</legend><br>
+        Código de Barras:<input onchange="enviaForm()" type="number"  name="cod" id="cod"><br><br>
+    </fieldset>
+</form>
+<table id="table">
+    <tr>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Fabricante</th>
+        <th>Categoria</th>
+        <th>Tipo de Produto</th>
+        <th>Preço de Venda</th>
+        <th>Quantidade em Estoque</th>
+        <th>Peso em gramas</th>
+        <th>Descrição</th>
+        <th>Link da imagem</th>
+        <th>Data de Inclusão</th>
+    </tr>
+</table>
+<span id="resposta"></span>
+</body>
+</html>

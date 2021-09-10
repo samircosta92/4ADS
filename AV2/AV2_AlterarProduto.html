@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alterar Produto</title>
+    <script>
+        function buscadados() {
+            let objProduto = document.getElementById("formProduto");
+            let cod = document.getElementById("cod1");
+
+            erro = validaCodigo(cod);
+
+            if (erro == 0) {
+                let xmlhttp = new XMLHttpRequest();
+                console.log(this.readyState);
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+
+                        if (JSON.parse(this.responseText) != "Não existe produto com o código correspondente!") {
+                            let result = JSON.parse(this.responseText);
+
+                            document.querySelector('input[name=cod]').value = result[0];
+                            document.querySelector('input[name=nome]').value = result[1];
+                            document.querySelector('input[name= fabricante]').value = result[2];
+                            document.querySelector('select[name= categoria]').value = result[3];
+                            //document.querySelector('select[name= cat]').value = result[4];
+                            document.querySelector('input[name= preco]').value = result[5];
+                            document.querySelector('input[name= qtd]').value = result[6];
+                            document.querySelector('input[name= peso]').value = result[7];
+                            document.querySelector('input[name= desc]').value = result[8];
+                            document.querySelector('input[name= img]').value = result[9];
+                            document.querySelector('input[name= data]').value = result[10];
+
+
+                        } else {
+                            document.getElementById("resposta").innerHTML = JSON.parse(this.responseText);
+                        }
+                    }
+
+                }
+                xmlhttp.open("GET", "http://localhost/3daw/AV2_AlterarProduto.php?codigo=" + objProduto.cod1.value, true);
+                xmlhttp.send();
+            }
+
+        }
+
+        function mostraCat()
+        {
+            let xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let result = JSON.parse(this.responseText);
+                    let cat = document.getElementById("categoria");
+
+                    for (i = 0; i < result.length; i++) {
+                        let categ = new Option(result[i], result[i]);
+                        cat.options.add(categ);
+                    }
+                }
+
+            }
+            xmlhttp.open("GET", "http://localhost/3daw/AV2_CATEGORIA.php?=                                                                                                                                                                                                        ", true);
+            xmlhttp.send();
+        }
+
+        function mostraInfo(strCat) {
+                if (strCat.length > 0) {
+
+                    let xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            let result = JSON.parse(this.responseText);
+                            document.getElementById("cat").innerHTML = ""
+                            let categories = document.getElementById("cat");
+
+                            for (i = 0; i < result.length; i++) {
+                                let category = new Option(result[i], result[i]);
+                                categories.options.add(category);
+                            }
+                        }
+
+                    }
+                    xmlhttp.open("GET", "http://localhost/3daw/AV2_TIPOPRODUTO.php?categoria=" + strCat, true);
+                    xmlhttp.send();
+                } else {
+                    document.getElementById("cat").innerHTML = ""
+                }
+            }
+
+            function enviaForm() {
+                let objProduto = document.getElementById("formProduto");
+                let cod = document.getElementById("cod");
+                let nome = document.getElementById("nome");
+                let fabricante = document.getElementById("fabricante");
+                let categoria = document.getElementById("categoria");
+                let preco = document.getElementById("preco");
+                let qtd = document.getElementById("qtd");
+                let peso = document.getElementById("peso");
+                let desc = document.getElementById("desc");
+                let img = document.getElementById("img");
+                let data = document.getElementById("data");
+
+                erro1 = validaCodigo(cod);
+                erro2 = validaNome(nome);
+                erro3 = validaFab(fabricante);
+                erro4 = validaCat(categoria);
+                erro5 = validaPreco(preco);
+                erro6 = validaQtd(qtd);
+                erro7 = validaPeso(peso);
+                erro8 = validaDesc(desc);
+                erro9 = validaLink(img);
+                erro10 = validaData(data);
+
+                erroForm = erro1 + erro2 + erro3 + erro4 + erro5 + erro6 + erro7 + erro8 + erro9 + erro10;
+
+                if (erroForm == 0) {
+                    let xmlhttp = new XMLHttpRequest();
+                    console.log(this.readyState);
+                    xmlhttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+
+                            document.getElementById("resposta2").innerText = this.responseText;
+                        }
+
+                    }
+                    xmlhttp.open("GET", "http://localhost/3daw/AV2_ConfirmaAlteração.php?codigo=" + objProduto.cod.value +
+                        "&nome=" + objProduto.nome.value + "&fabricante=" + objProduto.fabricante.value + "&categoria=" +
+                        objProduto.categoria.value + "&tipoproduto=" + objProduto.cat.value + "&preco=" + objProduto.preco.value +
+                        "&quantidade=" + objProduto.qtd.value + "&peso=" + objProduto.peso.value + "&desc=" + objProduto.desc.value +
+                        "&img=" + objProduto.img.value + "&data=" + objProduto.data.value, true);
+                    xmlhttp.send();
+
+                }
+            }
+
+            function validaCodigo(cod) {
+                let erroCod = 0;
+                if (cod.value.length == 13) {
+                    document.getElementById("resposta").innerHTML = "OK!<br>";
+                } else {
+                    document.getElementById("resposta").innerHTML = "Código inválido!<br>";
+                    erroCod = 1;
+                }
+                return (erroCod);
+            }
+
+            function validaNome(nome) {
+                let erroNome = 0;
+
+                if (nome.value == "") {
+                    erroNome = 1;
+                }
+
+                if (erroNome == 1) {
+                    document.getElementById("resposta").innerHTML += "Nome inválido!<br>";
+                } else {
+                    document.getElementById("resposta").innerHTML += "OK!<br>";
+                }
+                return (erroNome);
+            }
+
+            function validaFab(fabricante) {
+                let erroFab = 0;
+
+                if (fabricante.value == "") {
+                    erroFab = 1;
+                }
+
+                if (erroFab == 1) {
+                    document.getElementById("resposta").innerHTML += "Fabricante inválido!<br>";
+                } else {
+                    document.getElementById("resposta").innerHTML += "OK!<br>";
+                }
+                return (erroFab);
+            }
+
+            function validaCat(categoria) {
+                let erroCat = 0;
+
+                if (categoria.value == "") {
+                    erroCat = 1;
+                }
+
+                if (erroCat == 1) {
+                    document.getElementById("resposta").innerHTML += "Categoria inválida!<br>";
+                } else {
+                    document.getElementById("resposta").innerHTML += "OK!<br>";
+                }
+                return (erroCat);
+            }
+
+            function validaPreco(preco) {
+                let erroPre = 0;
+
+                if (preco.value == "") {
+                    erroPre = 1;
+                }
+
+                if (erroPre == 1) {
+                    document.getElementById("resposta").innerHTML += "Preço inválido!<br>";
+                } else {
+                    document.getElementById("resposta").innerHTML += "OK!<br>";
+                }
+                return (erroPre);
+            }
+
+            function validaQtd(qtd) {
+                let erroQtd = 0;
+
+                if (qtd.value == "") {
+                    erroQtd = 1;
+                }
+
+                if (erroQtd == 1) {
+                    document.getElementById("resposta").innerHTML += "Quantidade inválida!<br>";
+                } else {
+                    document.getElementById("resposta").innerHTML += "OK!<br>";
+                }
+                return (erroQtd);
+            }
+
+            function validaPeso(peso) {
+                let erroPeso = 0;
+
+                if (peso.value == "") {
+                    erroPeso = 1;
+                }
+
+                if (erroPeso == 1) {
+                    document.getElementById("resposta").innerHTML += "Peso inválido!<br>";
+                } else {
+                    document.getElementById("resposta").innerHTML += "OK!<br>";
+                }
+                return (erroPeso);
+            }
+
+            function validaDesc(desc) {
+                let erroDesc = 0;
+
+                if (desc.value == "") {
+                    erroDesc = 1;
+                }
+
+                if (erroDesc == 1) {
+                    document.getElementById("resposta").innerHTML += "Descrição inválida!<br>";
+                } else {
+                    document.getElementById("resposta").innerHTML += "OK!<br>";
+                }
+                return (erroDesc);
+            }
+
+            function validaLink(img) {
+                let erroLink = 0;
+
+                if (img.value == "") {
+                    erroLink = 1;
+                }
+
+                if (erroLink == 1) {
+                    document.getElementById("resposta").innerHTML += "Link inválido!<br>";
+                } else {
+                    document.getElementById("resposta").innerHTML += "OK!<br>";
+                }
+                return (erroLink);
+            }
+
+            function validaData(data) {
+                let erroData = 0;
+
+                if (data.value == "") {
+                    erroData = 1;
+                }
+
+                if (erroData == 1) {
+                    document.getElementById("resposta").innerHTML += "Data inválida!<br>";
+                } else {
+                    document.getElementById("resposta").innerHTML += "OK!<br>";
+                }
+                return (erroData);
+            }
+
+
+    </script>
+</head>
+<body onload="mostraCat()">
+<a href="AV2_MENU.html">VOLTAR</a>
+<form action="" method="post" name="produto" id="formProduto">
+    <fieldset name="id">
+        <legend>Informe o código do produto a ser alterado:</legend><br>
+        Código de Barras:<input onchange="buscadados(this.value)" type="number"  name="cod1" id="cod1"><br><br>
+    </fieldset>
+    <p id="resposta"></p>
+    <fieldset name="identificação">
+        <legend>Dados do Produto</legend><br>
+        Código de Barras:<input type="number"  name="cod" id="cod"><br><br>
+        Nome:<input type="text" name="nome" id="nome"><br><br>
+        Fabricante:<input type="text" name="fabricante" id="fabricante"><br><br>
+        Categoria:
+        <select name="categoria" id="categoria" onchange="mostraInfo(this.value)">
+
+        </select><br><br>
+        Tipo de Produto:
+        <select id="cat">
+        </select><br><br>
+        Preço de Venda:<input type="number" name="preco" id="preco"><br><br>
+        Quantidade em Estoque:<input type="number" name="qtd" id="qtd"><br><br>
+        Peso em Gramas:<input type="number" name="peso" id="peso"><br><br>
+        Descrição:<input type="text" name="desc" id="desc"><br><br>
+        Link da Imagem:<input type="text" name="img" id="img"><br><br>
+        Data de Inclusão:<input type="date" name="data" id="data"><br><br>
+        <input type="button" name="op" value="Alterar" onclick="enviaForm()">
+    </fieldset>
+</form>
+<p id="resposta2"></p>
+
+</body>
+</html>

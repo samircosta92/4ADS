@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listar um Produto</title>
+    <style>
+
+        table,tr,th,td {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+    <script>
+
+
+        function enviaForm() {
+            let objProduto = document.getElementById("formProduto");
+            let cod = document.getElementById("cod");
+
+            erro = validaCodigo(cod);
+
+
+            if (erro == 0) {
+                let xmlhttp = new XMLHttpRequest();
+
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+
+
+                        if(JSON.parse(this.responseText) != "Não existe produto com o código correspondente!") {
+                            let result = JSON.parse(this.responseText);
+                            var table = document.getElementById("table")
+                            var a = document.createElement('a');
+                            var linkname = document.createTextNode(result[1]);
+                            a.appendChild(linkname);
+                            a.href = "http://localhost/3daw/AV2_DETALHES.php?codigo="+result[0];
+                            document.body.appendChild(a);
+
+                            var linha = document.createElement("tr");
+                            var campo_cod = document.createElement("td");
+                            var campo_nome = document.createElement("td");
+                            var campo_cat = document.createElement("td");
+                            var campo_preco = document.createElement("td");
+                            var campo_est = document.createElement("td");
+
+                            var texto_cod = document.createTextNode(result[0]);
+                            var texto_nome = document.createTextNode(result[1]);
+                            var texto_cat = document.createTextNode(result[2]);
+                            var texto_preco = document.createTextNode(result[3]);
+                            var texto_est = document.createTextNode(result[4]);
+
+                            campo_cod.appendChild(texto_cod);
+                            campo_nome.appendChild(texto_nome);
+                            campo_cat.appendChild(texto_cat);
+                            campo_preco.appendChild(texto_preco);
+                            campo_est.appendChild(texto_est);
+
+
+                            linha.appendChild(campo_cod);
+                            linha.appendChild(a)
+                            linha.appendChild(campo_cat);
+                            linha.appendChild(campo_preco);
+                            linha.appendChild(campo_est);
+
+
+                            table.appendChild(linha);
+                        }
+                        else
+                        {
+                            document.getElementById("resposta").innerHTML = JSON.parse(this.responseText);
+                        }
+
+
+                    }
+
+                }
+
+
+                xmlhttp.open("GET", "http://localhost/3daw/AV2_ListarUmProduto.php?codigo=" + objProduto.cod.value, true);
+                xmlhttp.send();
+
+            }
+
+            function validaCodigo(cod) {
+                let erro = 0;
+                if (cod.value.length == 13) {
+                    document.getElementById("resposta").innerHTML = "OK!<br>";
+                } else {
+                    document.getElementById("resposta").innerHTML = "Código inválido!<br>";
+                    erro = 1;
+                }
+                return (erro);
+
+            }
+        }
+
+
+
+    </script>
+</head>
+<body>
+<a href="AV2_MENU.html">VOLTAR</a>
+<form action="" method="post" name="produto" id="formProduto">
+    <fieldset name="identificação">
+        <legend>Lista um Produto</legend><br>
+        Código de Barras:<input type="number"  name="cod" id="cod"><br><br>
+        <input type="button" name="op" value="Listar um Produto" onclick="enviaForm()">
+    </fieldset>
+</form>
+<table id="table">
+    <tr>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Categoria</th>
+        <th>Preço de Venda</th>
+        <th>Quantidade em Estoque</th>
+    </tr>
+</table>
+<span id="resposta"></span>
+</body>
+</html>
