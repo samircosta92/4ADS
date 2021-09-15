@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Incluir Livro</title>
+    <link rel="stylesheet" type="text/css" href="css/styleCadastro.css">
+    <script src="js/funcoes.js"></script>
+</head>
+<body>
+    <header>
+        <hr>
+        <h2>SISTEMA PARA GERENCIAMENTO DA BIBLIOTECA</h2>
+        <hr>
+    </header>
+
+    <form class="fieldclass" action="" method="post" name="livro" id="formLivro" >
+        <fieldset  name="identificação" >
+            Código:</Código:><input type="number"  name="cod" onchange="completalink()" id="cod"><br><br>
+            Nome:<input type="text" name="nome" id="nome"><br><br>
+            Autor:<input type="text" name="autor" id="autor"><br><br>
+            Editora:<input type="text" name="editora" id="editora"><br><br>
+            Quantidade:<input type="number"  name="qtd" id="qtd"><br><br>
+            Link da Imagem:<input type="text" name="img" value="imagens/" id="img"><br><br>
+            <input class="inputcolor" type="button" name="op" value="Inserir Livro" onclick="enviaForm()"><br><br>
+            <figure style="text-align:left">
+                <a href="CRUD_ACERVO.html"><img src="imagem/voltar.png" width="50px" height="35px"></a>
+            </figure>
+        </fieldset>
+    </form>
+    <p style="color:#000080;font-weight: bold" id="resposta"></p>
+    <footer>
+        <h4>Samir Costa & Wesley Xavier - 4ADS - 2021.2</h4>
+    </footer>
+</body>
+</html>
