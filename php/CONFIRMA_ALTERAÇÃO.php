@@ -19,16 +19,18 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     {
         $codigoValido = 1;
     }
-    if ($nome != "" and ctype_alpha(str_replace(' ', '',$nome)))
+
+    if ($nome != "" and mb_check_encoding($nome, 'UTF-8'))
     {
         $nomeValido = 1;
     }
-    if ($autor != "" and ctype_alpha(str_replace(' ', '',$autor)))
+
+    if ($autor != "" and mb_check_encoding($autor, 'UTF-8'))
     {
         $autorValido = 1;
     }
 
-    if ($editora != "" and ctype_alpha(str_replace(' ', '',$editora)))
+    if ($editora != "" and mb_check_encoding($editora, 'UTF-8'))
     {
         $editoraValido = 1;
     }
@@ -45,6 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 
 
+
     if ($codigoValido==1 and $nomeValido==1 and $autorValido==1 and $editoraValido==1 and
         $quantidadeValido==1 and $imgValido==1) {
         $servidor = "localhost";
@@ -58,25 +61,19 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             die("Não foi possível estabelecer uma conexão!" . $conn->connect_error);
         }
 
-        $sql = "SELECT * FROM `livros` WHERE `cod`='$codigo'";
-        $result = $conn->query($sql);
 
-        if ($result->num_rows == 0) {
-            $sql = "INSERT INTO `livros`(`cod`, `nome`, `autor`, `editora`, `qtdestoque`, `link`)
-            VALUES ('$codigo','$nome','$autor','$editora','$quantidade','$img')";
+        $sql = "UPDATE `livros` SET `cod`='$codigo',`nome`='$nome',`autor`='$autor',
+                       `editora`='$editora',`qtdestoque`='$quantidade',`link`='$img'";
 
 
+        if ($conn->query($sql) === TRUE) {
+            echo "Alteração feita com sucesso!";
 
-            if ($conn->query($sql) === TRUE) {
-                echo "Livro,$nome, inserido com sucesso!";
-
-            } else {
-
-                echo "Erro ao inserir livro!";
-            }
         } else {
-            echo "Livro já existente!";
+
+            echo "Erro ao alterar produto!";
         }
+
 
     }
     else
@@ -90,4 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 }
 
 ?>
+
+
+
+
 

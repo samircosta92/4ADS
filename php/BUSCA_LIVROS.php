@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
         if ($result->num_rows == 0)
         {
-            echo json_encode("Não existe produto com o código correspondente!");
+            echo json_encode("Não existe livro com o código correspondente!");
         }
         else{
             $linha = $result->fetch_assoc();
@@ -40,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 
             echo json_encode($dados);
-
         }
 
     } else {
