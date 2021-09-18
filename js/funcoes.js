@@ -1,5 +1,4 @@
-//INSERIR
-
+//INSERIR LIVRO
 
 function enviaForm() {
     let objLivro = document.getElementById("formLivro");
@@ -121,7 +120,7 @@ function validaLink(img)
 }
 
 
-//REMOVER
+//REMOVER LIVRO
 function enviaForm2() {
     let objLivro = document.getElementById("formLivro");
     let cod = document.getElementById("cod");
@@ -177,7 +176,7 @@ function enviaForm2() {
                     var button = document.createElement('button');
                     button.setAttribute('type','submit');
                     button.setAttribute('id','nome');
-                    button.appendChild(document.createTextNode('Deseja realmente excluir?'));
+                    button.appendChild(document.createTextNode('Confirme a Exclusão'));
                     form.appendChild(button);
 
                 }
@@ -212,7 +211,7 @@ function enviaForm2() {
 
 }
 
-//ALTERAR
+//ALTERAR LIVRO
 
 function buscadados() {
     let objLivro = document.getElementById("formLivro");
@@ -227,6 +226,8 @@ function buscadados() {
             if (this.readyState == 4 && this.status == 200) {
 
                 if (JSON.parse(this.responseText) != "Não existe livro com o código correspondente!") {
+                    document.getElementById("resposta").innerHTML = "";
+
                     let result = JSON.parse(this.responseText);
 
                     document.querySelector('input[name=cod]').value = result[0];
@@ -286,7 +287,7 @@ function enviaForm3() {
     }
 }
 
-//BUSCAR
+//BUSCAR LIVRO
 
 function enviaForm4() {
     let objLivro = document.getElementById("formLivro");
@@ -303,6 +304,9 @@ function enviaForm4() {
 
 
                 if (JSON.parse(this.responseText) != "Não existe livro com o código correspondente!") {
+
+                    document.getElementById("resposta").innerHTML = "";
+
                     let result = JSON.parse(this.responseText);
                     var table = document.getElementById("table")
                     var a = document.createElement('a');
@@ -345,6 +349,8 @@ function enviaForm4() {
 
                     var fig = document.getElementById("fig");
                     var img = document.createElement('img');
+                    img.width = '640px';
+                    img.height='360px';
                     img.src= result[5];
                     fig.appendChild(img);
 
@@ -364,4 +370,100 @@ function enviaForm4() {
         xmlhttp.send();
 
     }
+}
+
+//INSERIR ALUNO
+
+function enviaForm5() {
+    let objAluno = document.getElementById("formAluno");
+    let nome = document.getElementById("nome");
+    let mat = document.getElementById("mat");
+    let email = document.getElementById("email");
+    let tel = document.getElementById("tel");
+    let curso = document.getElementById("curso");
+    let datanasc = document.getElementById("datanasc");
+
+
+    erro1 = validaNome(nome);
+    erro2 = validaMat(mat);
+    erro3 = validaEmail(email);
+    erro4= validaTel(tel);
+    erro5 = validaCurso(curso);
+    erro6 = validaData(datanasc);
+
+    erroForm = erro1+erro2+erro3+erro4+erro5+erro6;
+
+    if (erroForm == 0) {
+        let xmlhttp = new XMLHttpRequest();
+        console.log(this.readyState);
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+
+                document.getElementById("resposta").innerText = this.responseText;
+            }
+
+        }
+        xmlhttp.open("GET", "http://localhost/4ADS/php/INSERIR_ALUNO.php?nome="+ objAluno.nome.value +
+            "&mat=" + objAluno.mat.value + "&email=" + objAluno.email.value + "&tel=" +
+            objAluno.tel.value + "&curso=" + objAluno.curso.value + "&data=" + objAluno.datanasc.value,true);
+        xmlhttp.send();
+
+    }
+}
+
+function validaMat(mat)
+{
+    let erroMat = 0;
+    if(mat.value == "")
+    {
+        erroMat = 1;
+        document.getElementById("resposta").innerHTML+= "Matrícula inválida!<br>";
+    }
+    return(erroMat);
+}
+
+function validaEmail(email)
+{
+    let erroEmail = 0;
+    if(email.value == "")
+    {
+        erroEmail = 1;
+        document.getElementById("resposta").innerHTML+= "Email inválido!<br>";
+    }
+    return(erroEmail);
+}
+
+function validaTel(tel){
+    let erroTel = 0;
+    if(tel.value == ""){
+        erroTel = 1;
+        document.getElementById("resposta").innerHTML+= "Telefone inválido!<br>";
+    }
+    return(erroTel);
+}
+
+function validaCurso(curso){
+    let erroCurso = 0;
+    if(curso.value == ""){
+        erroCurso = 1;
+        document.getElementById("resposta").innerHTML+= "Curso inválido!<br>";
+    }
+    return(erroCurso);
+}
+
+function validaData(data){
+    let erroData = 0;
+    if(data.value == ""){
+        erroData = 1;
+        document.getElementById("resposta").innerHTML+= "Data inválida!<br>";
+    }
+    return(erroData);
+}
+
+function avisoTel(){
+   let aviso =  document.getElementById('aviso');
+    aviso.style.marginTop= '0px';
+    aviso.style.fontSize = '10px';
+    aviso.style.color = "red";
+    aviso.innerHTML="Digite apenas numeros!<br><br>";
 }

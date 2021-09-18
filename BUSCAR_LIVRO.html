@@ -11,42 +11,42 @@
       border-collapse: collapse;
       padding-left: 20px;
       padding-right: 20px;
-      text-align: center;
+      margin:auto;
       color: navy;
     }
   </style>
 </head>
 <body>
-<header>
-  <hr>
-  <h2>SISTEMA PARA GERENCIAMENTO DA BIBLIOTECA</h2>
-  <hr>
-</header>
-<form action="" method="post" name="Livro" id="formLivro">
-  <fieldset class="fieldclass" name="identificação">
-    <legend>Buscar Livro</legend><br>
-    Código:<input type="number"  name="cod" id="cod"><br><br>
-    <table id="table">
-      <tr>
-        <th>Código</th>
-        <th>Nome</th>
-        <th>Autor</th>
-        <th>Editora</th>
-        <th>Quantidade</th>
-        <th>Link da Imagem</th>
-      </tr>
-    </table>
-    <figure id="fig"></figure>
-  </fieldset>
-    <input class="inputcolor" type="button" name="op" value="Buscar Livro" onclick="enviaForm4()">
-  <figure style="text-align:left">
-    <a href="CRUD_ACERVO.html"><img src="imagens/voltar.png" width="50px" height="35px"></a>
-  </figure>
-</form>
-
-<span style="color:#000080;font-weight: bold" id="resposta"></span>
-<footer style="margin-top: 250px ">
-  <h4>Samir Costa & Wesley Xavier - 4ADS - 2021.2</h4>
-</footer>
+  <header>
+    <hr>
+    <h2>SISTEMA PARA GERENCIAMENTO DA BIBLIOTECA</h2>
+    <hr>
+  </header>
+  <form action="" method="post" name="Livro" id="formLivro">
+    <fieldset class="fieldclass" name="identificação">
+      <legend>Buscar Livro</legend><br>
+      Código:<input type="number"  name="cod" id="cod"><br><br>
+      <table id="table">
+        <tr>
+          <th>Código</th>
+          <th>Nome</th>
+          <th>Autor</th>
+          <th>Editora</th>
+          <th>Quantidade</th>
+          <th>Link da Imagem</th>
+        </tr>
+      </table>
+      <figure id="fig"></figure>
+    </fieldset>
+    <input class="inputcolor" type="button" name="op" value="Buscar Livro" onclick="enviaForm4()"><br>
+    <span style="color:#000080;font-weight: bold" id="resposta"></span>
+    <br><br><br><br><br><br><br><br><br><br><br>
+    <figure style="text-align:left">
+      <a href="CRUD_ACERVO.html"><img src="imagens/voltar.png" width="50px" height="35px"></a>
+    </figure>
+  </form>
+  <footer style="margin-top: 50px ">
+    <h4>Samir Costa & Wesley Xavier - 4ADS - 2021.2</h4>
+  </footer>
 </body>
 </html>

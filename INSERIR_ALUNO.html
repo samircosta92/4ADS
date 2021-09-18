@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Incluir Aluno</title>
+    <link rel="stylesheet" type="text/css" href="css/styleCadastro.css">
+    <script src="js/funcoes.js"></script>
+</head>
+<body>
+<header>
+    <hr>
+    <h2>SISTEMA PARA GERENCIAMENTO DA BIBLIOTECA</h2>
+    <hr>
+</header>
+
+<form class="fieldclass" action="" method="post" name="aluno" id="formAluno" >
+    <fieldset  name="identificação" >
+        Nome:<input type="text"  name="nome" id="nome"  ><br><br>
+        Matricula:<input type="text" name="mat" id="mat"><br><br>
+        Email:<input type="email" name="email" id="email"><br><br>
+        Telefone:<input type="text" name="tel" id="tel" placeholder="99 999999999" onfocus="avisoTel()"><br>
+        <span id="aviso"></span>
+        <br>Curso:<input type="text"  name="curso" id="curso"><br><br>
+        Data de nascimento:<input type="date" name="datanasc"  id="datanasc"><br><br>
+        <input class="inputcolor" type="button" name="op" value="Inserir Aluno" onclick="enviaForm5()"><br><br>
+        <figure style="text-align:left">
+            <a href="CRUD_ALUNO.html"><img src="imagens/voltar.png" width="50px" height="35px"></a>
+        </figure>
+    </fieldset>
+</form>
+<p style="color:#000080;font-weight: bold" id="resposta"></p>
+<footer>
+    <h4>Samir Costa & Wesley Xavier - 4ADS - 2021.2</h4>
+</footer>
+</body>
+</html>
