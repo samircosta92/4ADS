@@ -467,3 +467,90 @@ function avisoTel(){
     aviso.style.color = "red";
     aviso.innerHTML="Digite apenas numeros!<br><br>";
 }
+
+//REMOVER ALUNO
+function enviaForm6() {
+    let objAluno = document.getElementById("formAluno");
+    let cod = document.getElementById("cod");
+
+    erro = validaCodigo(cod);
+
+    if (erro == 0) {
+        let xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+
+
+                if(JSON.parse(this.responseText) != "Não existe Aluno com o código correspondente!") {
+                    let result = JSON.parse(this.responseText);
+                    var table = document.getElementById("table");
+
+                    document.getElementById('resposta').innerHTML="";
+
+                    var linha = document.createElement("tr");
+                    var campo_cod = document.createElement("td");
+                    var campo_nome = document.createElement("td");
+                    var campo_aut = document.createElement("td");
+                    var campo_edit = document.createElement("td");
+                    var campo_qtd = document.createElement("td");
+                    var campo_link = document.createElement("td");
+
+
+                    var texto_cod = document.createTextNode(result[1]);
+                    var texto_nome = document.createTextNode(result[0]);
+                    var texto_aut = document.createTextNode(result[2]);
+                    var texto_edit = document.createTextNode(result[3]);
+                    var texto_qtd = document.createTextNode(result[4]);
+                    var texto_link = document.createTextNode(result[5]);
+
+                    campo_cod.appendChild(texto_cod);
+                    campo_nome.appendChild(texto_nome);
+                    campo_aut.appendChild(texto_aut);
+                    campo_edit.appendChild(texto_edit);
+                    campo_qtd.appendChild(texto_qtd);
+                    campo_link.appendChild(texto_link);
+
+                    linha.appendChild(campo_cod);
+                    linha.appendChild(campo_nome)
+                    linha.appendChild(campo_aut)
+                    linha.appendChild(campo_edit);
+                    linha.appendChild(campo_qtd)
+                    linha.appendChild(campo_link);
+
+                    table.appendChild(linha);
+
+                    var form = document.getElementById("formAluno");
+                    var button = document.createElement('button');
+                    button.setAttribute('type','submit');
+                    button.setAttribute('id','nome');
+                    button.appendChild(document.createTextNode('Confirme a Exclusão'));
+                    form.appendChild(button);
+
+                }
+                else
+                {
+                    document.getElementById("resposta").innerHTML= JSON.parse(this.responseText);
+                }
+
+
+            }
+
+        }
+
+
+        xmlhttp.open("GET", "http://localhost/4ADS/php/BUSCA_ALUNOS.php?codigo=" + objAluno.cod.value, true);
+        xmlhttp.send();
+    }
+
+    function validaCodigo(cod)
+    {
+        let erroCod = 0;
+        if(cod.value.length !=5) {
+            document.getElementById("resposta").innerHTML = "Código Invalido!<br>";
+            erroCod = 1;
+        }
+        return(erroCod);
+    }
+
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="css/styleCadastro.css">
+  <title>Excluir Aluno</title>
+  <style>
+
+    table,tr,th,td {
+      border: 2px solid black;
+      border-collapse: collapse;
+      padding-left: 20px;
+      padding-right: 20px;
+      margin:auto;
+      color: navy;
+    }
+  </style>
+  <script src="js/funcoes.js"></script>
+
+</head>
+<body>
+<header>
+  <hr>
+  <h2>SISTEMA PARA GERENCIAMENTO DA BIBLIOTECA</h2>
+  <hr>
+</header>
+<form  action="" method="post" name="Aluno" id="formAluno">
+  <fieldset class="fieldclass" name="identificação">
+    Matricula:<input onchange="enviaForm6()" type="number"  name="cod" id="cod"><br><br>
+
+    <table id="table">
+      <tr>
+        <th>Matricula</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Curso</th>
+        <th>Data de nascimento</th>
+      </tr>
+    </table>
+  </fieldset>
+</form>
+<span style="color:navy;font-weight:bold" id="resposta"></span>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<figure  style="text-align:left;">
+  <a href="CRUD_ACERVO.html"><img src="imagens/voltar.png" width="50px" height="35px"></a>
+</figure>
+<footer style="margin-top: 35px;">
+  <h4>Samir Costa & Wesley Xavier - 4ADS - 2021.2</h4>
+</footer>
+</body>
+</html>
