@@ -417,7 +417,7 @@ function validaMat(mat)
     if(mat.value == "")
     {
         erroMat = 1;
-        document.getElementById("resposta").innerHTML+= "Matrícula inválida!<br>";
+        document.getElementById("resposta").innerHTML= "Matrícula inválida!<br>";
     }
     return(erroMat);
 }
@@ -566,16 +566,16 @@ function enviaForm7() {
             if (this.readyState == 4 && this.status == 200) {
 
 
-                if (JSON.parse(this.responseText) != "Não existe livro com o código correspondente!") {
+                if (JSON.parse(this.responseText) != "Não existe aluno com o código correspondente!") {
 
                     document.getElementById("resposta").innerHTML = "";
 
                     let result = JSON.parse(this.responseText);
                     var table = document.getElementById("table")
                     var a = document.createElement('a');
-                    var linkname = document.createTextNode(result[1]);
+                    var linkname = document.createTextNode(result[0]);
                     a.appendChild(linkname);
-                    a.href = "https://www.google.com/search?q=" + result[1];
+                    a.href = "https://www.google.com/search?q=" + result[0];
                     document.body.appendChild(a);
 
                     var linha = document.createElement("tr");
@@ -601,7 +601,7 @@ function enviaForm7() {
                     campo_link.appendChild(texto_link);
 
                     linha.appendChild(campo_cod);
-                    linha.appendChild(a)
+                    linha.appendChild(a);
                     linha.appendChild(campo_aut);
                     linha.appendChild(campo_edit);
                     linha.appendChild(campo_qtd);
@@ -620,6 +620,7 @@ function enviaForm7() {
 
 
                 } else {
+
                     document.getElementById("resposta").innerHTML = JSON.parse(this.responseText);
                 }
 
