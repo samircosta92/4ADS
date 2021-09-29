@@ -472,8 +472,10 @@ function avisoTel(){
 function enviaForm6() {
     let objAluno = document.getElementById("formAluno");
     let cod = document.getElementById("cod");
+    console.log("chegou!");
 
-    erro = validaMat(cod);
+    var erro = validaMat(cod);
+    console.log(erro);
 
     if (erro == 0) {
         let xmlhttp = new XMLHttpRequest();
@@ -482,9 +484,10 @@ function enviaForm6() {
             if (this.readyState == 4 && this.status == 200) {
 
 
-                if (JSON.parse(this.responseText) != "Não existe Aluno com o código correspondente!") {
+                if (JSON.parse(this.responseText) != "Não existe aluno com o código correspondente!") {
                     let result = JSON.parse(this.responseText);
                     var table = document.getElementById("table");
+                    console.log("chegou2!");
 
                     document.getElementById('resposta').innerHTML = "";
 
@@ -535,20 +538,16 @@ function enviaForm6() {
             }
 
 
-            xmlhttp.open("GET", "http://localhost/4ADS/php/BUSCA_ALUNOS.php?codigo=" + objAluno.cod.value, true);
-            xmlhttp.send();
         }
-
-        function validaCodigo(cod) {
-            let erroCod = 0;
-            if (cod.value.length != 5) {
-                document.getElementById("resposta").innerHTML = "Código Invalido!<br>";
-                erroCod = 1;
-            }
-            return (erroCod);
-        }
+        console.log(objAluno.cod.value);
+        xmlhttp.open("GET", "http://localhost/4ADS/php/BUSCA_ALUNOS.php?codigo=" + objAluno.cod.value, true);
+        xmlhttp.send();
     }
 }
+
+
+
+
 
 
 //BUSCAR ALUNO
@@ -578,6 +577,7 @@ function enviaForm7() {
                     a.href = "https://www.google.com/search?q=" + result[0];
                     document.body.appendChild(a);
 
+
                     var linha = document.createElement("tr");
                     var campo_cod = document.createElement("td");
                     var campo_nome = document.createElement("td");
@@ -585,6 +585,7 @@ function enviaForm7() {
                     var campo_edit = document.createElement("td");
                     var campo_qtd = document.createElement("td");
                     var campo_link = document.createElement("td");
+
 
                     var texto_cod = document.createTextNode(result[1]);
                     var texto_nome = document.createTextNode(result[0]);
@@ -635,3 +636,4 @@ function enviaForm7() {
 
     }
 }
+
