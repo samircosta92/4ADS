@@ -637,3 +637,80 @@ function enviaForm7() {
     }
 }
 
+
+//ALTERAR ALUNO
+
+function buscaAluno(str) {
+    let objLivro = document.getElementById("formAluno");
+    let cod = document.getElementById("mat1");
+
+    erro = validaMat(cod);
+
+    if (erro == 0) {
+        let xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+
+                if (JSON.parse(this.responseText) != "Não existe aluno com o código correspondente!") {
+                    document.getElementById("resposta").innerHTML = "";
+
+                    let result = JSON.parse(this.responseText);
+                    console.log(result);
+
+                    document.querySelector('input[name=nome]').value = result[0];
+                    document.querySelector('input[name=mat]').value = result[1];
+                    document.querySelector('input[name=email]').value = result[2];
+                    document.querySelector('input[name=telefone]').value = result[3];
+                    document.querySelector('input[name=curso]').value = result[4];
+                    document.querySelector('input[name=datanasc]').value = result[5];
+
+
+                } else {
+                    document.getElementById("resposta").innerHTML = JSON.parse(this.responseText);
+                }
+            }
+
+        }
+        xmlhttp.open("GET", "http://localhost/4ADS/php/BUSCA_ALUNOS.PHP?codigo=" + objLivro.mat1.value, true);
+        xmlhttp.send();
+    }
+
+}
+
+function enviaForm8() {
+    /*let objLivro = document.getElementById("formLivro");
+    let cod = document.getElementById("cod");
+    let nome = document.getElementById("nome");
+    let autor = document.getElementById("autor");
+    let editora = document.getElementById("editora");
+    let qtd = document.getElementById("qtd");
+    let img = document.getElementById("img");
+
+
+    erro1 = validaCodigo(cod);
+    erro2 = validaNome(nome);
+    erro3 = validaAutor(autor);
+    erro4= validaEditora(editora);
+    erro5 = validaQtd(qtd);
+    erro6 = validaLink(img);
+
+    erroForm = erro1+erro2+erro3+erro4+erro5+erro6;
+
+    if (erroForm == 0) {
+        let xmlhttp = new XMLHttpRequest();
+        console.log(this.readyState);
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+
+                document.getElementById("resposta2").innerText = this.responseText;
+            }
+
+        }
+        xmlhttp.open("GET", "http://localhost/4ADS/php/CONFIRMA_ALTERAÇÃO.php?codigo="+ objLivro.cod.value +
+            "&nome=" + objLivro.nome.value + "&autor=" + objLivro.autor.value + "&editora=" +
+            objLivro.editora.value + "&quantidade=" + objLivro.qtd.value + "&img=" + objLivro.img.value,true);
+        xmlhttp.send();
+
+    }*/
+}
