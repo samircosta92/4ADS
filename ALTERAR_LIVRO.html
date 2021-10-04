@@ -7,31 +7,31 @@
   <script src="js/funcoes.js"></script>
 </head>
 <body>
-<header>
+  <header>
+    <hr>
+    <h2>SISTEMA PARA GERENCIAMENTO DA BIBLIOTECA</h2>
+    <hr>
+  </header>
+  <form action="" method="post" name="livro" id="formLivro">
+    <fieldset class="fieldclass" name="id">
+      <legend>Informe o código do livro a ser alterado:</legend><br>
+      Código:<input onchange="buscadados(this.value)" type="number"  name="cod1" id="cod1"><br><br>
+    </fieldset>
+    <p style="color:#000080;font-weight: bold"id="resposta"></p>
+    <fieldset class="fieldclass" name="identificação">
+      <legend>Dados do Livro</legend><br>
+      Código:<input type="number"  name="cod" id="cod"><br><br>
+      Nome:<input type="text" name="nome" id="nome"><br><br>
+      Autor:<input type="text" name="autor" id="autor"><br><br>
+      Editora:<input type="text" name="editora" id="editora"><br><br>
+      Quantidade:<input type="number" name="qtd" id="qtd"><br><br>
+      Link da Imagem:<input type="text" name="img" id="img"><br><br>
+      <input class="inputcolor" type="button" name="op" value="Alterar" onclick="enviaForm3()">
+    </fieldset>
+  </form>
+  <p style="color:#000080;font-weight: bold" id="resposta2"></p>
+  <a href="CRUD_ACERVO.html"><img src="imagens/voltar.png" width="50px" height="35px"></a>
   <hr>
-  <h2>SISTEMA PARA GERENCIAMENTO DA BIBLIOTECA</h2>
-  <hr>
-</header>
-<form action="" method="post" name="livro" id="formLivro">
-  <fieldset class="fieldclass" name="id">
-    <legend>Informe o código do livro a ser alterado:</legend><br>
-    Código:<input onchange="buscadados(this.value)" type="number"  name="cod1" id="cod1"><br><br>
-  </fieldset>
-  <p style="color:#000080;font-weight: bold"id="resposta"></p>
-  <fieldset class="fieldclass" name="identificação">
-    <legend>Dados do Livro</legend><br>
-    Código:<input type="number"  name="cod" id="cod"><br><br>
-    Nome:<input type="text" name="nome" id="nome"><br><br>
-    Autor:<input type="text" name="autor" id="autor"><br><br>
-    Editora:<input type="text" name="editora" id="editora"><br><br>
-    Quantidade:<input type="number" name="qtd" id="qtd"><br><br>
-    Link da Imagem:<input type="text" name="img" id="img"><br><br>
-    <input class="inputcolor" type="button" name="op" value="Alterar" onclick="enviaForm3()">
-  </fieldset>
-</form>
-<p style="color:#000080;font-weight: bold" id="resposta2"></p>
-<a href="CRUD_ACERVO.html"><img src="imagens/voltar.png" width="50px" height="35px"></a>
-<hr>
-<footer><h4>Samir Costa & Wesley Xavier - 4ADS - 2021.2</h4></footer>
+  <footer><h4>Samir Costa & Wesley Xavier - 4ADS - 2021.2</h4></footer>
 </body>
 </html>

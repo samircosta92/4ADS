@@ -679,21 +679,20 @@ function buscaAluno(str) {
 }
 
 function enviaForm8() {
-    /*let objLivro = document.getElementById("formLivro");
-    let cod = document.getElementById("cod");
+    /*let objLivro = document.getElementById("formAluno");
+    let mat = document.getElementById("nat");
     let nome = document.getElementById("nome");
-    let autor = document.getElementById("autor");
-    let editora = document.getElementById("editora");
-    let qtd = document.getElementById("qtd");
-    let img = document.getElementById("img");
+    let email = document.getElementById("email");
+    let telefone = document.getElementById("telefone");
+    let curso = document.getElementById("curso");
+    let data = document.getElementById("datanasc");
 
-
-    erro1 = validaCodigo(cod);
-    erro2 = validaNome(nome);
-    erro3 = validaAutor(autor);
-    erro4= validaEditora(editora);
-    erro5 = validaQtd(qtd);
-    erro6 = validaLink(img);
+    erro1 = validaNome(nome);
+    erro2 = validaMat(mat);
+    erro3 = validaEmail(email);
+    erro4= validaTel(telefone);
+    erro5 = validaCurso(curso);
+    erro6 = validaData(data);
 
     erroForm = erro1+erro2+erro3+erro4+erro5+erro6;
 
@@ -707,9 +706,9 @@ function enviaForm8() {
             }
 
         }
-        xmlhttp.open("GET", "http://localhost/4ADS/php/CONFIRMA_ALTERAÇÃO.php?codigo="+ objLivro.cod.value +
-            "&nome=" + objLivro.nome.value + "&autor=" + objLivro.autor.value + "&editora=" +
-            objLivro.editora.value + "&quantidade=" + objLivro.qtd.value + "&img=" + objLivro.img.value,true);
+        xmlhttp.open("GET", "http://localhost/4ADS/php/CONFIRMA_ALTERAÇÃO.php?mat="+ objLivro.mat.value +
+            "&nome=" + objLivro.nome.value + "&email=" + objLivro.email.value + "&telefone=" +
+            objLivro.telefone.value + "&curso=" + objLivro.curso.value + "&data=" + objLivro.data.value,true);
         xmlhttp.send();
 
     }*/
