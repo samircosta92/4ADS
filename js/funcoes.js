@@ -706,7 +706,7 @@ function enviaForm8() {
             }
 
         }
-        xmlhttp.open("GET", "http://localhost/4ADS/php/CONFIRMA_ALTERAÇÃO.php?mat="+ objLivro.mat.value +
+        xmlhttp.open("GET", "http://localhost/4ADS/php/CONFIRMA_ALTERAÇÃO_ALUNO.php?mat="+ objLivro.mat.value +
             "&nome=" + objLivro.nome.value + "&email=" + objLivro.email.value + "&telefone=" +
             objLivro.telefone.value + "&curso=" + objLivro.curso.value + "&data=" + objLivro.data.value,true);
         xmlhttp.send();
