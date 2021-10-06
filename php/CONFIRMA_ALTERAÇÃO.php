@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 
         $sql = "UPDATE `livros` SET `cod`='$codigo',`nome`='$nome',`autor`='$autor',
-                       `editora`='$editora',`qtdestoque`='$quantidade',`link`='$img'";
+                       `editora`='$editora',`qtdestoque`='$quantidade',`link`='$img' WHERE  `cod`='$codigo'";
 
 
         if ($conn->query($sql) === TRUE) {

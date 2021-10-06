@@ -61,16 +61,15 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             die("Não foi possível estabelecer uma conexão!" . $conn->connect_error);
         }
 
-
         $sql = "UPDATE `alunos` SET `nome`='$nome',`matricula`='$matricula',`email`='$email',
-                       `telefone`='$telefone',`curso`='$curso',`data`='$data'";
+                       `telefone`='$telefone',`curso`='$curso',`datanasc`='$data'";
 
         if ($conn->query($sql) === TRUE) {
             echo "Alteração feita com sucesso!";
 
         } else {
-
-            echo "Erro ao alterar produto!";
+            die("Erro ao alterar produto!" . $conn->error);
+            //echo "Erro ao alterar produto!";
         }
 
 

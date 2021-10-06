@@ -24,7 +24,12 @@ function enviaForm() {
         console.log(this.readyState);
         xmlhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-
+                document.querySelector('input[name=cod]').value = "";
+                document.querySelector('input[name=nome]').value = "";
+                document.querySelector('input[name=autor]').value = "";
+                document.querySelector('input[name=editora]').value = "";
+                document.querySelector('input[name=qtd]').value = "";
+                document.querySelector('input[name=img]').value = "";
                 document.getElementById("resposta").innerText = this.responseText;
             }
 
@@ -54,6 +59,12 @@ function validaCodigo(cod)
 {
     let erroCod = 0;
     if(cod.value.length !=5) {
+        document.querySelector('input[name=cod]').value = "";
+        document.querySelector('input[name=nome]').value = "";
+        document.querySelector('input[name=autor]').value = "";
+        document.querySelector('input[name=editora]').value = "";
+        document.querySelector('input[name=qtd]').value = "";
+        document.querySelector('input[name=img]').value = "";
         document.getElementById("resposta").innerHTML = "Código Invalido!<br>";
         erroCod = 1;
     }
@@ -239,6 +250,12 @@ function buscadados() {
 
 
                 } else {
+                    document.querySelector('input[name=cod]').value = "";
+                    document.querySelector('input[name=nome]').value = "";
+                    document.querySelector('input[name=autor]').value = "";
+                    document.querySelector('input[name=editora]').value = "";
+                    document.querySelector('input[name=qtd]').value = "";
+                    document.querySelector('input[name=img]').value = "";
                     document.getElementById("resposta").innerHTML = JSON.parse(this.responseText);
                 }
             }
@@ -398,7 +415,12 @@ function enviaForm5() {
         console.log(this.readyState);
         xmlhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-
+                document.getElementById("nome").value = "";
+                document.getElementById("mat").value = "";
+                document.getElementById("email").value = "";
+                document.getElementById("tel").value = "";
+                document.getElementById("curso").value = "";
+                document.getElementById("datanasc").value = "";
                 document.getElementById("resposta").innerText = this.responseText;
             }
 
@@ -414,7 +436,25 @@ function enviaForm5() {
 function validaMat(mat)
 {
     let erroMat = 0;
-    if(mat.value == "")
+    if(mat.value.length !=13)
+    {
+        erroMat = 1;
+        document.getElementById("nome").value = "";
+        document.getElementById("mat").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("tel").value = "";
+        document.getElementById("curso").value = "";
+        document.getElementById("datanasc").value = "";
+
+        document.getElementById("resposta").innerHTML= "Matrícula inválida!<br>";
+    }
+    return(erroMat);
+}
+
+function validaMatExc(mat)
+{
+    let erroMat = 0;
+    if(mat.value.length !=13)
     {
         erroMat = 1;
         document.getElementById("resposta").innerHTML= "Matrícula inválida!<br>";
@@ -471,10 +511,10 @@ function avisoTel(){
 //REMOVER ALUNO
 function enviaForm6() {
     let objAluno = document.getElementById("formAluno");
-    let cod = document.getElementById("cod");
+    let cod = document.getElementById("mat");
     console.log("chegou!");
 
-    var erro = validaMat(cod);
+    var erro = validaMatExc(cod);
     console.log(erro);
 
     if (erro == 0) {
@@ -555,7 +595,7 @@ function enviaForm7() {
     let objLivro = document.getElementById("formAluno");
     let cod = document.getElementById("cod");
 
-    erro = validaMat(cod);
+    erro = validaMatExc(cod);
 
 
     if (erro == 0) {
@@ -656,7 +696,7 @@ function buscaAluno(str) {
                     document.getElementById("resposta").innerHTML = "";
 
                     let result = JSON.parse(this.responseText);
-                    console.log(result);
+                    console.log(result);//teste
 
                     document.querySelector('input[name=nome]').value = result[0];
                     document.querySelector('input[name=mat]').value = result[1];
@@ -667,6 +707,14 @@ function buscaAluno(str) {
 
 
                 } else {
+
+                    document.querySelector('input[name=nome]').value = "";
+                    document.querySelector('input[name=mat]').value = "";
+                    document.querySelector('input[name=email]').value = "";
+                    document.querySelector('input[name=telefone]').value = "";
+                    document.querySelector('input[name=curso]').value = "";
+                    document.querySelector('input[name=datanasc]').value = "";
+
                     document.getElementById("resposta").innerHTML = JSON.parse(this.responseText);
                 }
             }
@@ -679,8 +727,8 @@ function buscaAluno(str) {
 }
 
 function enviaForm8() {
-    /*let objLivro = document.getElementById("formAluno");
-    let mat = document.getElementById("nat");
+    let objLivro = document.getElementById("formAluno");
+    let mat = document.getElementById("mat");
     let nome = document.getElementById("nome");
     let email = document.getElementById("email");
     let telefone = document.getElementById("telefone");
@@ -698,7 +746,7 @@ function enviaForm8() {
 
     if (erroForm == 0) {
         let xmlhttp = new XMLHttpRequest();
-        console.log(this.readyState);
+
         xmlhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
 
@@ -708,8 +756,8 @@ function enviaForm8() {
         }
         xmlhttp.open("GET", "http://localhost/4ADS/php/CONFIRMA_ALTERAÇÃO_ALUNO.php?mat="+ objLivro.mat.value +
             "&nome=" + objLivro.nome.value + "&email=" + objLivro.email.value + "&telefone=" +
-            objLivro.telefone.value + "&curso=" + objLivro.curso.value + "&data=" + objLivro.data.value,true);
+            objLivro.telefone.value + "&curso=" + objLivro.curso.value + "&data=" + objLivro.datanasc.value,true);
         xmlhttp.send();
 
-    }*/
+    }
 }
