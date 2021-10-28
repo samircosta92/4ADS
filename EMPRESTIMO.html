@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="css/styleCadastro.css">
+    <meta charset="UTF-8">
+    <style>
+        .class{
+        width:100vw;
+        height:100vh;
+        display:flex;
+        flex-direction: row;
+        justify-content:center;
+        align-items:center;
+        }
+    </style>
+    <title>Sistema Biblioteca</title>
+
+</head>
+<body>
+<header>
+    <hr>
+    <h2>EMPRÉSTIMO</h2>
+    <hr>
+</header>
+
+<div class="class" style="display: inline-flex;">
+    <div style="float: right; width: 250%; background-color: #FFD700;padding: 30px;  border: black solid 2px;margin:auto;">
+        <form action="" method="post" name="aluno" id="formAluno">
+            <fieldset class="fieldclass" name="id">
+                <legend>Informe a matricula do aluno a ser alterado:</legend><br>
+                Matrícula:<input onchange="buscaAluno(this.value)" type="number"  name="mat1" id="mat1"><br><br>
+            </fieldset>
+            <p style="color:#000080;font-weight: bold"id="resposta"></p>
+            <fieldset class="fieldclass" name="identificação">
+                <legend>Dados do Aluno</legend><br>
+                Matricula:<input type="number"  name="mat" id="mat"><br><br>
+                Nome:<input type="text" name="nome" id="nome"><br><br>
+                Email:<input type="text" name="email" id="email"><br><br>
+                Telefone:<input type="text" name="telefone" id="telefone"><br><br>
+                Curso:<input type="text" name="curso" id="curso"><br><br>
+                Data de nascimento:<input type="text" name="datanasc" id="datanasc"><br><br>
+                <input class="inputcolor" type="button" name="op" value="Alterar" onclick="enviaForm8()">
+            </fieldset>
+        </form>
+    </div>
+    <br><br>
+    <div style="float: left; width: 250%; background-color: aqua;padding: 30px; border: black solid 2px;"> <form action="" method="post" name="aluno" id="formAluno">
+        <fieldset class="fieldclass" name="id">
+            <legend>Informe a matricula do aluno a ser alterado:</legend><br>
+            Matrícula:<input onchange="buscaAluno(this.value)" type="number"  name="mat1" id="mat1"><br><br>
+        </fieldset>
+        <p style="color:#000080;font-weight: bold"id="resposta"></p>
+        <fieldset class="fieldclass" name="identificação">
+            <legend>Dados do Aluno</legend><br>
+            Matricula:<input type="number"  name="mat" id="mat"><br><br>
+            Nome:<input type="text" name="nome" id="nome"><br><br>
+            Email:<input type="text" name="email" id="email"><br><br>
+            Telefone:<input type="text" name="telefone" id="telefone"><br><br>
+            Curso:<input type="text" name="curso" id="curso"><br><br>
+            Data de nascimento:<input type="text" name="datanasc" id="datanasc"><br><br>
+            <input class="inputcolor" type="button" name="op" value="Alterar" onclick="enviaForm8()">
+        </fieldset>
+    </form>
+    </div>
+</div>
+
+<br><br><br><br><br>
+<hr>
+<footer><h4>Samir Costa & Wesley Xavier - 4ADS - 2021.2</h4></footer>
+</body>
+</html>
