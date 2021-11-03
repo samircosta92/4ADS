@@ -763,7 +763,13 @@ function enviaForm8() {
 }
 
 /*Busca dados do aluno*/
+function buscaAluno2(str){
+
+}
 
 /*Busca dados do livro*/
+function buscadados2(str){
+
+}
 
 /*Registra o emprestimo*/

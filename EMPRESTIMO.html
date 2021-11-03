@@ -16,32 +16,33 @@
 <div class="class">
     <div class="classdiv1">
         <form action="" method="post" name="aluno" id="formAluno">
-            <fieldset class="fieldclass" name="id">
+            <fieldset class="fieldclass">
                 <legend>Informe a matricula do aluno:</legend><br>
-                Matrícula:<input onchange="buscaAluno(this.value)" type="number"  name="mat1" id="mat1"><br><br>
+                Matrícula:<input onchange="buscaAluno2(this.value)" type="number"  name="mat" id="mat"><br><br>
             </fieldset>
-            <p style="color:#000080;font-weight: bold"id="resposta"></p>
-            <fieldset class="fieldclass" name="identificação">
+            <p style="color:#000080;font-weight: bold"id="resposta1"></p>
+            <fieldset class="fieldclass">
                 <legend>Dados do Aluno</legend><br>
-                Nome:<input type="text" name="nome" id="nome"><br><br>
+                Nome:<input type="text" name="nomealuno" id="nomealuno"><br><br>
                 Curso:<input type="text" name="curso" id="curso"><br><br>
-                Situação:<input type="text" name="situacao" id="situacao"><br><br>
+                Situação:<input type="text" name="sitaluno" id="sitaluno"><br><br>
             </fieldset>
         </form>
     </div>
     <br><br>
-    <div class="classdiv2" > <form action="" method="post" name="aluno" id="formLivro">
-        <fieldset class="fieldclass" name="id">
-            <legend>Informe o codigo do livro:</legend><br>
-            Codigo:<input onchange="buscaAluno(this.value)" type="number"  name="mat1" id="mat1"><br><br>
-        </fieldset>
-        <p style="color:#000080;font-weight: bold"id="resposta"></p>
-        <fieldset class="fieldclass" name="identificação">
-            <legend>Dados do Livro</legend><br>
-            Nome:<input type="text" name="nome" id="nome"><br><br>
-            Autor:<input type="text" name="autor" id="autor"><br><br>
-            Situação:<input type="text" name="situacao" id="situacao"><br><br>
-        </fieldset>
+    <div class="classdiv2" >
+        <form action="" method="post" name="aluno" id="formLivro">
+            <fieldset class="fieldclass">
+                <legend>Informe o codigo do livro:</legend><br>
+                Codigo:<input onchange="buscadados2(this.value)" type="number"  name="cod" id="cod"><br><br>
+            </fieldset>
+            <p style="color:#000080;font-weight: bold"id="resposta2"></p>
+            <fieldset class="fieldclass">
+                <legend>Dados do Livro</legend><br>
+                Nome:<input type="text" name="nome" id="nome"><br><br>
+                Autor:<input type="text" name="autor" id="autor"><br><br>
+                Situação:<input type="text" name="sitautor" id="sitautor"><br><br>
+            </fieldset>
     </form>
     </div>
 </div>
