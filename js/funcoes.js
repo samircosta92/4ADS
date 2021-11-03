@@ -761,3 +761,9 @@ function enviaForm8() {
 
     }
 }
+
+/*Busca dados do aluno*/
+
+/*Busca dados do livro*/
+
+/*Registra o emprestimo*/
