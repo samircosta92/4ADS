@@ -764,12 +764,130 @@ function enviaForm8() {
 
 /*Busca dados do aluno*/
 function buscaAluno2(str){
+    let objAluno = document.getElementById("formAluno");
+    let mat = document.getElementById("mat");
 
+    erro = validaMatExc(mat);
+
+    if (erro == 0) {
+        let xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+
+                if (JSON.parse(this.responseText) != "Não existe aluno com a matricula correspondente!") {
+                    document.getElementById("resposta1").innerHTML = "";
+
+                    let result = JSON.parse(this.responseText);
+                    console.log(result);//teste
+
+                    document.querySelector('input[name=nomealuno]').value = result[0];
+                    document.querySelector('input[name=curso]').value = result[1];
+                    document.querySelector('input[name=sitaluno]').value = result[2];
+
+                } else {
+
+                    document.querySelector('input[name=nomealuno]').value = "";
+                    document.querySelector('input[name=curso]').value = "";
+                    document.querySelector('input[name=sitaluno]').value = "";
+
+                    var aviso = document.getElementById("resposta1");
+                    aviso.style.marginTop= '0px';
+                    aviso.style.fontSize = '10px';
+                    aviso.style.color = "red";
+                    aviso.innerHTML = JSON.parse(this.responseText)
+                }
+            }
+
+        }
+        xmlhttp.open("GET", "http://localhost/4ADS/php/BUSCA_ALUNOS_EMP.PHP?matricula=" + objAluno.mat.value, true);
+        xmlhttp.send();
+    }
 }
 
 /*Busca dados do livro*/
 function buscadados2(str){
+    let objLivro = document.getElementById("formLivro");
+    let cod = document.getElementById("cod");
 
+    erro = validaCodigo(cod);
+
+    if (erro == 0) {
+        let xmlhttp = new XMLHttpRequest();
+        console.log(this.readyState);
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+
+                if (JSON.parse(this.responseText) != "Não existe livro com o código correspondente!") {
+                    document.getElementById("resposta2").innerHTML = "";
+
+                    let result = JSON.parse(this.responseText);
+                    console.log(result);//teste
+
+                    document.querySelector('input[name=nome]').value = result[0];
+                    document.querySelector('input[name=autor]').value = result[1];
+                    document.querySelector('input[name=sitautor]').value = result[2];
+
+                } else {
+                    document.querySelector('input[name=nome]').value = "";
+                    document.querySelector('input[name=autor]').value = "";
+                    document.querySelector('input[name=sitautor]').value = "";
+
+                    var aviso = document.getElementById("resposta2");
+                    aviso.style.marginTop= '0px';
+                    aviso.style.fontSize = '10px';
+                    aviso.style.color = "red";
+                    aviso.innerHTML = JSON.parse(this.responseText)
+
+                }
+            }
+
+        }
+        xmlhttp.open("GET", "http://localhost/4ADS/php/BUSCA_LIVROS_EMP.php?codigo=" + objLivro.cod.value, true);
+        xmlhttp.send();
+    }
 }
 
 /*Registra o emprestimo*/
+function enviaEmp() {
+    let objLivro = document.getElementById("formLivro");
+    let objAluno = document.getElementById("formAluno");
+
+    let cod = document.getElementById("cod");
+    let nome = document.getElementById("nome");
+
+    let nomeA = document.getElementById("nomealuno");
+    let mat = document.getElementById("mat");
+
+    console.log(cod.value);
+    console.log(nome.value);
+    console.log(mat.value);
+    console.log(nomeA.value);
+
+
+    erro1 = validaCodigo(cod);
+    erro2 = validaNome(nome);
+    erro3 = validaMatExc(mat);
+    erro4 = validaNome(nomeA);
+
+    erroForm = erro1 + erro2 + erro3 + erro4;
+
+    if (erroForm == 0) {
+        let xmlhttp = new XMLHttpRequest();
+        console.log(this.readyState);
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.querySelector('input[name=cod]').value = "";
+                document.querySelector('input[name=nome]').value = "";
+                document.querySelector('input[name=mat]').value = "";
+                document.querySelector('input[name=nomealuno]').value = "";
+                document.getElementById("resposta3").innerText = this.responseText;
+            }
+
+        }
+        xmlhttp.open("GET", "http://localhost/4ADS/php/CONFIRMA_EMP.php?codigo=" + cod.value +
+            "&nome=" +nome.value + "&mat=" + mat.value + "&nomealuno=" +
+            nomeA.value, true);
+        xmlhttp.send();
+    }
+}
