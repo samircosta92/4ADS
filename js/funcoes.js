@@ -869,25 +869,31 @@ function enviaEmp() {
     erro2 = validaNome(nome);
     erro3 = validaMatExc(mat);
     erro4 = validaNome(nomeA);
-
     erroForm = erro1 + erro2 + erro3 + erro4;
 
-    if (erroForm == 0) {
-        let xmlhttp = new XMLHttpRequest();
-        console.log(this.readyState);
-        xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                document.querySelector('input[name=cod]').value = "";
-                document.querySelector('input[name=nome]').value = "";
-                document.querySelector('input[name=mat]').value = "";
-                document.querySelector('input[name=nomealuno]').value = "";
-                document.getElementById("resposta3").innerText = this.responseText;
-            }
+    if (document.getElementById("sitaluno").value=="OK" &&
+        document.getElementById("sitautor").value=="Disponivel") {
 
+        if (erroForm == 0) {
+            let xmlhttp = new XMLHttpRequest();
+            console.log(this.readyState);
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.querySelector('input[name=cod]').value = "";
+                    document.querySelector('input[name=nome]').value = "";
+                    document.querySelector('input[name=mat]').value = "";
+                    document.querySelector('input[name=nomealuno]').value = "";
+                    document.getElementById("resposta3").innerText = this.responseText;
+                }
+
+            }
+            xmlhttp.open("GET", "http://localhost/4ADS/php/CONFIRMA_EMP.php?codigo=" + cod.value +
+                "&nome=" + nome.value + "&mat=" + mat.value + "&nomealuno=" +
+                nomeA.value, true);
+            xmlhttp.send();
         }
-        xmlhttp.open("GET", "http://localhost/4ADS/php/CONFIRMA_EMP.php?codigo=" + cod.value +
-            "&nome=" +nome.value + "&mat=" + mat.value + "&nomealuno=" +
-            nomeA.value, true);
-        xmlhttp.send();
+    }
+    else{
+        document.getElementById("resposta3").innerText = "Não é possível realizar o empréstimo";
     }
 }
