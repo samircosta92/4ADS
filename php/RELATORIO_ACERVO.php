@@ -17,6 +17,7 @@ $result = $conn->query($sql);
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="../css/styleCadastro.css">
     <meta charset="UTF-8">
     <title>Relatório de Acervo</title>
     <style>
@@ -24,10 +25,19 @@ $result = $conn->query($sql);
         table,tr,th,td {
             border: 2px solid black;
             border-collapse: collapse;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin:auto;
+            color: navy;
         }
     </style>
 </head>
 <body>
+    <header>
+        <hr>
+            <h2>RELATÓRIO DE ACERVO</h2>
+        <hr>
+    </header>
 
     <table>
         <tr>
@@ -57,9 +67,14 @@ $result = $conn->query($sql);
         } while ($linha = $result->fetch_assoc())
 
         ?>
-
     </table>
-    <a href="RELATORIOS.html">VOLTAR</a>
+    <div style="text-align: center">
+        <br><br>
+        <input class="inputcolor" type="button" name="envia" value="Gerar PDF" onclick="">
+    </div>
+    <a href="../RELATORIOS.html"><img src="../imagens/voltar.png" width="50px" height="35px"></a>
+    <hr>
+    <footer><h4>Samir Costa & Wesley Xavier - 4ADS - 2021.2</h4></footer>
 </body>
 </html>
 

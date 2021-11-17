@@ -53,6 +53,11 @@ $result = $conn->query($sql);
         $linha = $result->fetch_assoc();
 
         do{
+            if ($linha['Situacao'] == 0){
+                $linha['Situacao'] = "Emprestado";
+            }else{
+                $linha['Situacao'] = "Devolvido";
+            }
 
             ?>
 
@@ -68,7 +73,11 @@ $result = $conn->query($sql);
 
         ?>
     </table>
-    <a href="../RELATORIOS.html">VOLTAR</a>
+    <div style="text-align: center">
+        <br><br>
+        <input class="inputcolor" type="button" name="envia" value="Gerar PDF" onclick="">
+    </div>
+    <a href="../RELATORIOS.html"><img src="../imagens/voltar.png" width="50px" height="35px"></a>
 </body>
 <hr>
 <footer><h4>Samir Costa & Wesley Xavier - 4ADS - 2021.2</h4></footer>
