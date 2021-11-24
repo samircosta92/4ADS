@@ -18,6 +18,7 @@ $result = $conn->query($sql);
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="../css/styleCadastro.css">
+    <script src="../js/funcoes.js"></script>
     <meta charset="UTF-8">
     <title>Relatório de Acervo</title>
     <style>
@@ -70,7 +71,8 @@ $result = $conn->query($sql);
     </table>
     <div style="text-align: center">
         <br><br>
-        <input class="inputcolor" type="button" name="envia" value="Gerar PDF" onclick="">
+        <input class="inputcolor" type="button" name="envia" value="Acervo" onclick="gerarRelatorios(this.value)">
+        <p id="resposta"></p>
     </div>
     <a href="../RELATORIOS.html"><img src="../imagens/voltar.png" width="50px" height="35px"></a>
     <hr>

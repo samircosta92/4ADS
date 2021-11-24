@@ -897,3 +897,22 @@ function enviaEmp() {
         document.getElementById("resposta3").innerText = "Não é possível realizar o empréstimo";
     }
 }
+
+
+
+
+//FUNÇÕES PARA GERAR RELATÓRIO
+function gerarRelatorios(relatorio){
+
+    let xmlhttp = new XMLHttpRequest();
+    console.log(this.readyState);
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("resposta").innerText = this.responseText;
+        }
+
+    }
+    xmlhttp.open("GET", "http://localhost/4ADS/php/GERA_PDF.php?relatorio=" + relatorio, true);
+    xmlhttp.send();
+
+}
