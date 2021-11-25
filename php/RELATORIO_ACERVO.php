@@ -71,7 +71,7 @@ $result = $conn->query($sql);
     </table>
     <div style="text-align: center">
         <br><br>
-        <input class="inputcolor" type="button" name="envia" value="Acervo" onclick="gerarRelatorios(this.value)">
+        <input class="inputcolor" type="button" name="Acervo" value="Gerar PDF" onclick="gerarRelatorios(this.name)">
         <p id="resposta"></p>
     </div>
     <a href="../RELATORIOS.html"><img src="../imagens/voltar.png" width="50px" height="35px"></a>
