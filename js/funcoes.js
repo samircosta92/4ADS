@@ -916,3 +916,61 @@ function gerarRelatorios(relatorio){
     xmlhttp.send();
 
 }
+
+
+//FUNÇÃO PARA BUSCAR INFORMAÇÕES DO EMPRESTIMO
+function buscaEmpr(str){
+
+    if(validaMatExc(str)==1){
+        document.getElementById("resposta").innerText = "Matricula Inválida!";
+    }else{
+        let xmlhttp = new XMLHttpRequest();
+        console.log(this.readyState);
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+
+                let result = JSON.parse(this.responseText);
+                console.log(result);//teste
+                var table = document.getElementById("table");
+
+                var linha = document.createElement("tr");
+                var campo_id = document.createElement("td");
+                var campo_mat = document.createElement("td");
+                var campo_cod = document.createElement("td");
+                var campo_dataemp = document.createElement("td");
+                var campo_dev = document.createElement("td");
+                var campo_situ = document.createElement("td");
+
+                var texto_id = document.createTextNode(result[0]);
+                var texto_mat = document.createTextNode(result[1]);
+                var texto_cod = document.createTextNode(result[2]);
+                var texto_dataemp = document.createTextNode(result[3]);
+                var texto_dev = document.createTextNode(result[4]);
+                var texto_situ = document.createTextNode(result[5]);
+
+                campo_id.appendChild(texto_id);
+                campo_mat.appendChild(texto_mat);
+                campo_cod.appendChild(texto_cod);
+                campo_dataemp.appendChild(texto_dataemp);
+                campo_dev.appendChild(texto_dev);
+                campo_situ.appendChild(texto_situ);
+
+                linha.appendChild(campo_id);
+                linha.appendChild(campo_mat);
+                linha.appendChild(campo_cod);
+                linha.appendChild(campo_dataemp);
+                linha.appendChild(campo_dev);
+                linha.appendChild(campo_situ);
+
+
+                table.appendChild(linha);
+
+            }
+
+        }
+        xmlhttp.open("GET", "http://localhost/4ADS/php/DADOS_EMP.php?matricula=" + str, true);
+        xmlhttp.send();
+    }
+
+
+}

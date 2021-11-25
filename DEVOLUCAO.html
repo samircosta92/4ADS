@@ -4,17 +4,43 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/styleCadastro.css">
     <script src="js/funcoes.js"></script>
-    <title>Title</title>
+    <title>Devolução</title>
+    <style>
+        table,tr,th,td {
+            border: 2px solid black;
+            border-collapse: collapse;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin:auto;
+            color: navy;
+        }
+    </style>
 </head>
 <body>
     <header>
         <hr>
-        <h2>DEVOLUÇÃO</h2>
+        <h2>SISTEMA PARA GERENCIAMENTO DA BIBLIOTECA</h2>
         <hr>
     </header>
+    <form class="fieldclass" action="">
+        <fieldset>
+            Digite a matricula do aluno:<input onchange="buscaEmpr(this.value)" type="text" name="matricula" id="mat" >
 
+            <legend>Buscar Aluno</legend><br>
+            <table id="table">
+                <tr>
+                    <th>Id empréstimo</th>
+                    <th>Matricula aluno</th>
+                    <th>Codigo Livro</th>
+                    <th>Data emprestimo</th>
+                    <th>Data devolução</th>
+                    <th>Situação</th>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
 
-    <footer>
+    <footer style="margin-top: 400px">
         <h4>Samir Costa & Wesley Xavier - 4ADS - 2021.2</h4>
     </footer>
 </body>
