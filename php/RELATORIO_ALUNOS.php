@@ -82,7 +82,7 @@ $result = $conn->query($sql);
         <input class="inputcolor" type="button" name="Alunos" value="Gerar PDF" onclick="gerarRelatorios(this.name)">
         <p id="resposta"></p>
     </div>
-    <a href="../RELATORIOS.html"><img src="../imagens/voltar.png" width="50px" height="35px"></a>
+    <a href="../html/RELATORIOS.html"><img src="../imagens/voltar.png" width="50px" height="35px"></a>
     <hr>
     <footer><h4>Samir Costa & Wesley Xavier - 4ADS - 2021.2</h4></footer>
 </body>

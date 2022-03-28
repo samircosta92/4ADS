@@ -62,7 +62,7 @@ $result = $conn->query($sql);
 echo "<div>
     <p>Aluno excluído com sucesso!</p><br>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <a href='../EXCLUIR_ALUNO.html'><img src='../imagens/voltar.png' width='50px' height='35px'></a>
+    <a href='../html/EXCLUIR_ALUNO.html'><img src='../imagens/voltar.png' width='50px' height='35px'></a>
 </div>";
 
 } else {

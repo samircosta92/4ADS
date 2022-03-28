@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 echo "<div>
     <p>Livro excluído com sucesso!</p><br>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <a href='../EXCLUIR_LIVRO.html'><img src='../imagens/voltar.png' width='50px' height='35px'></a>
+    <a href='../html/EXCLUIR_LIVRO.html'><img src='../imagens/voltar.png' width='50px' height='35px'></a>
 </div>";
 
 } else {
