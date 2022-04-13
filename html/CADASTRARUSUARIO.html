@@ -13,7 +13,7 @@
         <hr>
     </header>
 
-    <form class="fieldclass" action="">
+    <form class="fieldclass" id="formUsuario">
         <h1>Cadastrar usuário</h1>
         <fieldset>
             Nome: <input type="text" name="nome" id="nome"><br><br>
@@ -21,8 +21,8 @@
             Confirmação da senha: <input type="text" name="confsenha" id="confsenha"><br><br>
             Email: <input type="email" name="email" id="email"><br><br>
             Confirmação do email: <input type="email" name="confemail" id="confemail"><br><br>
-
-            <button>Confirmar</button>
+            <input class="inputcolor" type="button" name="op" value="Confirmar" onclick="enviaCadastro()"><br><br>
+            <p style="color:#000080;font-weight: bold"id="resposta1"></p>
             <br><br>
             <figure style="text-align:left">
                 <a href="LOGIN.html"><img src="../imagens/voltar.png" width="50px" height="35px"></a>

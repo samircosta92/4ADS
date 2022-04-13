@@ -972,5 +972,44 @@ function buscaEmpr(str){
         xmlhttp.send();
     }
 
+}
 
+//Função para cadastrar usuario
+function enviaCadastro(){
+    let objUsuario = document.getElementById("formUsuario");
+
+    var nome = document.getElementById("nome");
+    var email = document.getElementById("email");
+    var senha = document.getElementById("senha");
+
+    var confemail = document.getElementById("confemail");
+    var confsenha = document.getElementById("confsenha");
+
+    document.getElementById("resposta1").innerText = "";
+    console.log("chegou1");
+
+    if ((email.value != confemail.value) || (senha.value != confsenha.value)){
+        document.getElementById("resposta1").innerText = "Senha ou email não batem!";
+        console.log("chegou2");
+    }
+
+    console.log(validaNome(nome));
+
+    if (validaCampo(nome.value)==1 || validaCampo(email.value)==1 || validaCampo(senha.value)==1 || validaCampo(confemail.value)==1 || validaCampo(confsenha.value)==1){
+        document.getElementById("resposta").innerText = "Preencha os dados corretamente!";
+        console.log("chegou3");
+    }
+
+    console.log("chegou4");
+
+}
+
+function validaCampo(nome)
+{
+    let erroNome = 0;
+    if(nome.value == "")
+    {
+        erroNome = 1;
+    }
+    return(erroNome);
 }
