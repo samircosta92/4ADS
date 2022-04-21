@@ -19,14 +19,14 @@
                 <h1>Realizar Login</h1>
                 <img src="../imagens/LIVROS2.png" alt="imagem de livro" width="130" height="130">
             </figure>
-            <form action="">
-                Usuario: <input type="text" name="usuario" id="usuario"><br><br>
+            <form id="formLogin">
+                Login: <input type="text" name="nome" id="nome"><br><br>
                 Senha: <input type="text" name="senha" id="senha"><br><br>
             </form>
-            <button>Entrar</button><br><br>
+            <input class="inputcolor" type="button" name="op" value="Entrar" onclick="enviaLogin()"><br><br>
             <a href="CADASTRARUSUARIO.html">Ainda não tenho uma conta</a>
         </fieldset>
-
+        <p style="color:#000080;font-weight: bold"id="resposta"></p>
     </div>
 
     <hr>

@@ -83,6 +83,19 @@ function validaNome(nome)
     return(erroNome);
 }
 
+//função valida senha
+
+function validaSenha(senha)
+{
+    let erroSenha = 0;
+    if(senha.value == "")
+    {
+        erroNome = 1;
+        document.getElementById("resposta").innerHTML+= "Senha inválida!<br>";
+    }
+    return(erroSenha);
+}
+
 //função valida autor
 function validaAutor(autor)
 {
@@ -981,35 +994,79 @@ function enviaCadastro(){
     var nome = document.getElementById("nome");
     var email = document.getElementById("email");
     var senha = document.getElementById("senha");
-
     var confemail = document.getElementById("confemail");
     var confsenha = document.getElementById("confsenha");
 
-    document.getElementById("resposta1").innerText = "";
-    console.log("chegou1");
+    document.getElementById("resposta").innerText = " ";
+    erro1 = validaNome(nome);
+    erro2 = validaEmail(email);
+    erro3 = validaSenha(senha);
+
+    erroForm = erro1+erro2+erro3;
+
+
 
     if ((email.value != confemail.value) || (senha.value != confsenha.value)){
-        document.getElementById("resposta1").innerText = "Senha ou email não batem!";
-        console.log("chegou2");
+        document.getElementById("resposta").innerText = "Senha e/ou email não são iguais às confirmações!";
+
     }
+    else
+    if (erroForm==0){
+        let xmlhttp = new XMLHttpRequest();
+        console.log(this.readyState);
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("nome").value = "";
+                document.getElementById("senha").value = "";
+                document.getElementById("confsenha").value = "";
+                document.getElementById("email").value = "";
+                document.getElementById("confemail").value = "";
+                document.getElementById("resposta").innerText = this.responseText;
 
-    console.log(validaNome(nome));
+            }
 
-    if (validaCampo(nome.value)==1 || validaCampo(email.value)==1 || validaCampo(senha.value)==1 || validaCampo(confemail.value)==1 || validaCampo(confsenha.value)==1){
-        document.getElementById("resposta").innerText = "Preencha os dados corretamente!";
-        console.log("chegou3");
+        }
+        xmlhttp.open("GET", "http://localhost/4ADS/php/INSERIR_USUÁRIO.php?nome="+ objUsuario.nome.value +
+            "&senha=" + objUsuario.senha.value + "&email=" + objUsuario.email.value,true);
+        xmlhttp.send();
+
     }
-
-    console.log("chegou4");
 
 }
 
-function validaCampo(nome)
-{
-    let erroNome = 0;
-    if(nome.value == "")
-    {
-        erroNome = 1;
+//Função para login
+function enviaLogin(){
+    let objLogin = document.getElementById("formLogin");
+
+    var nome = document.getElementById("nome");
+    var senha = document.getElementById("senha");
+
+
+    document.getElementById("resposta").innerText = " ";
+    erro1 = validaNome(nome);
+    erro2 = validaSenha(senha);
+
+    erroForm = erro1+erro2;
+
+
+    if (erroForm==0){
+        let xmlhttp = new XMLHttpRequest();
+        console.log(this.readyState);
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("nome").value = "";
+                document.getElementById("senha").value = "";
+                document.getElementById("resposta").innerText = this.responseText;
+
+            }
+
+        }
+        xmlhttp.open("GET", "http://localhost/4ADS/php/LOGIN.php?nome="+ objLogin.nome.value +
+            "&senha=" + objLogin.senha.value,true);
+        xmlhttp.send();
+
     }
-    return(erroNome);
+
+
 }
+
