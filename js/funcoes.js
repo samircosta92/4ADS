@@ -1056,16 +1056,18 @@ function enviaLogin(){
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("nome").value = "";
                 document.getElementById("senha").value = "";
-                document.getElementById("resposta").innerText = this.responseText;
 
-                let xmlhttp2 = new XMLHttpRequest();
-                xmlhttp2.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        console.log("chegou");
-                    }
+                if(JSON.parse(this.responseText) == "Ok" )
+                {
+                    window.location.href = "http://localhost/4ads/html/MENU.html"
                 }
-                xmlhttp2.open("GET", "http://localhost/4ADS/html/MENU.html",false);
-                xmlhttp2.send();
+                else
+                {
+                    document.getElementById("resposta").innerText = JSON.parse(this.responseText);
+
+                }
+
+
             }
 
         }

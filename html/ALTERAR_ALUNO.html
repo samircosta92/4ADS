@@ -15,17 +15,17 @@
 <form action="" method="post" name="aluno" id="formAluno">
     <fieldset class="fieldclass" name="id">
         <legend>Informe a matricula do aluno a ser alterado:</legend><br>
-        Matrícula:<input onchange="buscaAluno(this.value)" type="number"  name="mat1" id="mat1"><br><br>
+        <label>Matrícula:</label><input onchange="buscaAluno(this.value)" type="number"  name="mat1" id="mat1"><br><br>
     </fieldset>
     <p style="color:#000080;font-weight: bold"id="resposta"></p>
     <fieldset class="fieldclass" name="identificação">
         <legend>Dados do Aluno</legend><br>
-        Matricula:<input type="number"  name="mat" id="mat"><br><br>
-        Nome:<input type="text" name="nome" id="nome"><br><br>
-        Email:<input type="text" name="email" id="email"><br><br>
-        Telefone:<input type="text" name="telefone" id="telefone"><br><br>
-        Curso:<input type="text" name="curso" id="curso"><br><br>
-        Data de nascimento:<input type="text" name="datanasc" id="datanasc"><br><br>
+        <label>Matricula:</label><input type="number"  name="mat" id="mat"><br><br>
+        <label>Nome:</label><input type="text" name="nome" id="nome"><br><br>
+        <label>Email:</label><input type="text" name="email" id="email"><br><br>
+        <label>Telefone:</label><input type="text" name="telefone" id="telefone"><br><br>
+        <label>Curso:</label><input type="text" name="curso" id="curso"><br><br>
+        <label>Data de nascimento:</label><input type="text" name="datanasc" id="datanasc"><br><br>
         <input class="inputcolor" type="button" name="op" value="Alterar" onclick="enviaForm8()">
     </fieldset>
 </form>

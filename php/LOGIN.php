@@ -30,18 +30,17 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $result = $conn->query($sql);
 
         if ($result->num_rows == 0) {
-            echo ("Usuário não existe!");
+            echo json_encode("Usuário não existe!");
         } else {
             $linha = $result->fetch_assoc();
 
             if ($linha["senha"] == $senha) {
 
 
-                header('Location: ../html/menu.html',true, 301);
-                exit();
+                echo json_encode("Ok");
 
             } else {
-                echo "Dados inválidos!";
+                echo json_encode("Dados inválidos!");
             }
 
         }
