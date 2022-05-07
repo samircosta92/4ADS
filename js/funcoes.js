@@ -1058,6 +1058,14 @@ function enviaLogin(){
                 document.getElementById("senha").value = "";
                 document.getElementById("resposta").innerText = this.responseText;
 
+                let xmlhttp2 = new XMLHttpRequest();
+                xmlhttp2.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        console.log("chegou");
+                    }
+                }
+                xmlhttp2.open("GET", "http://localhost/4ADS/html/MENU.html",false);
+                xmlhttp2.send();
             }
 
         }
