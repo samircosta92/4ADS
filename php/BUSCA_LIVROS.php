@@ -32,11 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $dados = array();
 
             $dados[0] = $linha["cod"];
-            $dados[1] = $linha["nome"];
-            $dados[2] = $linha["autor"];
-            $dados[3] = $linha["editora"];
-            $dados[4] = $linha["qtdestoque"];
-            $dados[5] = $linha["link"];
+            $dados[1] = $linha["isbn"];
+            $dados[2] = $linha["nome"];
+            $dados[3] = $linha["autor"];
+            $dados[4] = $linha["editora"];
+            $dados[5] = $linha["qtdestoque"];
+            $dados[6] = $linha["link"];
 
 
             echo json_encode($dados);

@@ -6,6 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $tel = $_GET["tel"];
     $curso = $_GET["curso"];
     $data = $_GET["data"];
+    $img = $_GET["img"];
 
     $nomeValido = 0;
     $matValido = 0;
@@ -13,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $telValido = 0;
     $cursoValido = 0;
     $dataValido = 0;
+    $imgValido = 0;
 
 
     if ($nome != "" and mb_check_encoding($nome, 'UTF-8'))
@@ -44,10 +46,14 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     {
         $dataValido = 1;
     }
+    if ($img != "" )
+    {
+        $imgValido = 1;
+    }
 
 
     if ($nomeValido==1 and $matValido==1 and $emailValido==1 and $telValido==1 and
-        $cursoValido==1 and $dataValido==1) {
+        $cursoValido==1 and $dataValido==1 and $imgValido ==1) {
         $servidor = "localhost";
         $usuario = "root";
         $senha = "";
@@ -63,8 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $result = $conn->query($sql);
 
         if ($result->num_rows == 0) {
-            $sql = "INSERT INTO `alunos`(`nome`, `matricula`, `email`, `telefone`, `curso`,`datanasc`)
-            VALUES ('$nome','$mat','$email','$tel','$curso','$data')";
+            $sql = "INSERT INTO `alunos`(`nome`, `matricula`, `email`, `telefone`, `curso`,`datanasc`,`link`)
+            VALUES ('$nome','$mat','$email','$tel','$curso','$data','$img')";
 
 
             if ($conn->query($sql) === TRUE) {

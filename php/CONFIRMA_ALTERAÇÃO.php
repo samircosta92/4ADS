@@ -1,6 +1,7 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $codigo = $_GET["codigo"];
+    $isbn = $_GET["isbn"];
     $nome = $_GET["nome"];
     $autor = $_GET["autor"];
     $editora = $_GET["editora"];
@@ -13,7 +14,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $editoraValido = 0;
     $quantidadeValido = 0;
     $imgValido = 0;
+    $isbnValido = 0;
 
+
+    if (strlen($isbn) == 13 and ctype_digit($isbn))
+    {
+        $isbnValido = 1;
+    }
 
     if ($codigo != "" and ctype_digit($codigo))
     {
@@ -48,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 
 
-    if ($codigoValido==1 and $nomeValido==1 and $autorValido==1 and $editoraValido==1 and
+    if ($codigoValido==1 and $isbnValido==1 and $nomeValido==1 and $autorValido==1 and $editoraValido==1 and
         $quantidadeValido==1 and $imgValido==1) {
         $servidor = "localhost";
         $usuario = "root";
@@ -62,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         }
 
 
-        $sql = "UPDATE `livros` SET `cod`='$codigo',`nome`='$nome',`autor`='$autor',
+        $sql = "UPDATE `livros` SET `cod`='$codigo',`isbn`='$isbn',`nome`='$nome',`autor`='$autor',
                        `editora`='$editora',`qtdestoque`='$quantidade',`link`='$img' WHERE  `cod`='$codigo'";
 
 

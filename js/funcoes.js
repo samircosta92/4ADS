@@ -8,6 +8,7 @@ function enviaForm() {
     let editora = document.getElementById("editora");
     let qtd = document.getElementById("qtd");
     let img = document.getElementById("img");
+    let isbn = document.getElementById("isbn");
 
 
     erro1 = validaCodigo(cod);
@@ -16,8 +17,9 @@ function enviaForm() {
     erro4= validaEditora(editora);
     erro5 = validaQtd(qtd);
     erro6 = validaLink(img);
+    erro7 = validaIsbn(isbn);
 
-    erroForm = erro1+erro2+erro3+erro4+erro5+erro6;
+    erroForm = erro1+erro2+erro3+erro4+erro5+erro6+erro7;
 
     if (erroForm == 0) {
         let xmlhttp = new XMLHttpRequest();
@@ -25,6 +27,7 @@ function enviaForm() {
         xmlhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 document.querySelector('input[name=cod]').value = "";
+                document.querySelector('input[name=isbn]').value = "";
                 document.querySelector('input[name=nome]').value = "";
                 document.querySelector('input[name=autor]').value = "";
                 document.querySelector('input[name=editora]').value = "";
@@ -34,11 +37,24 @@ function enviaForm() {
             }
 
         }
-        xmlhttp.open("GET", "http://localhost/4ADS/php/INSERIR_LIVRO.php?codigo="+ objLivro.cod.value +
-            "&nome=" + objLivro.nome.value + "&autor=" + objLivro.autor.value + "&editora=" +
+        xmlhttp.open("GET", "http://localhost/4ADS/php/INSERIR_LIVRO.php?codigo="+objLivro.cod.value+"&isbn=" + objLivro.isbn.value
+            +"&nome=" + objLivro.nome.value + "&autor=" + objLivro.autor.value + "&editora=" +
             objLivro.editora.value + "&quantidade=" + objLivro.qtd.value + "&img=" + objLivro.img.value,true);
         xmlhttp.send();
 
+    }
+}
+
+function completalink2()
+{
+
+    if(document.getElementById('mat').value.length != 13){
+
+        document.getElementById("resposta").innerHTML = "Matrícula Inválida!";
+    }else{
+        document.getElementById("resposta").innerHTML = "";
+        document.querySelector('input[name= img]').value= "";
+        document.querySelector('input[name= img]').value+= "imagens/" + document.getElementById("mat").value +".jpg";
     }
 }
 
@@ -52,6 +68,33 @@ function completalink()
         document.querySelector('input[name= img]').value= "";
         document.querySelector('input[name= img]').value+= "imagens/" + document.getElementById("cod").value +".jpg";
     }
+}
+
+//função valida ISBN
+function validaIsbn (isbn){
+    let erroIsbn = 0
+
+    if(isbn.value.length != 13){
+        erroIsbn = 1;
+        console.log(isbn);
+    }
+
+    if(!isNumber(isbn.value)){
+        erroIsbn=1;
+        console.log("aqui2");
+    }
+
+    if(erroIsbn == 1)
+    {
+        document.getElementById("resposta").innerHTML+= "ISBN inválido!<br>";
+    }
+
+    return erroIsbn;
+}
+
+//função que verifica se a string só tem numeros
+function isNumber(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
 //função valida codigo
@@ -166,6 +209,7 @@ function enviaForm2() {
 
                     var linha = document.createElement("tr");
                     var campo_cod = document.createElement("td");
+                    var campo_isbn = document.createElement("td");
                     var campo_nome = document.createElement("td");
                     var campo_aut = document.createElement("td");
                     var campo_edit = document.createElement("td");
@@ -174,13 +218,15 @@ function enviaForm2() {
 
 
                     var texto_cod = document.createTextNode(result[0]);
-                    var texto_nome = document.createTextNode(result[1]);
-                    var texto_aut = document.createTextNode(result[2]);
-                    var texto_edit = document.createTextNode(result[3]);
-                    var texto_qtd = document.createTextNode(result[4]);
-                    var texto_link = document.createTextNode(result[5]);
+                    var texto_isbn = document.createTextNode(result[1]);
+                    var texto_nome = document.createTextNode(result[2]);
+                    var texto_aut = document.createTextNode(result[3]);
+                    var texto_edit = document.createTextNode(result[4]);
+                    var texto_qtd = document.createTextNode(result[5]);
+                    var texto_link = document.createTextNode(result[6]);
 
                     campo_cod.appendChild(texto_cod);
+                    campo_isbn.appendChild(texto_isbn);
                     campo_nome.appendChild(texto_nome);
                     campo_aut.appendChild(texto_aut);
                     campo_edit.appendChild(texto_edit);
@@ -188,6 +234,7 @@ function enviaForm2() {
                     campo_link.appendChild(texto_link);
 
                     linha.appendChild(campo_cod);
+                    linha.appendChild(campo_isbn);
                     linha.appendChild(campo_nome)
                     linha.appendChild(campo_aut)
                     linha.appendChild(campo_edit);
@@ -254,16 +301,19 @@ function buscadados() {
 
                     let result = JSON.parse(this.responseText);
 
+
                     document.querySelector('input[name=cod]').value = result[0];
-                    document.querySelector('input[name=nome]').value = result[1];
-                    document.querySelector('input[name=autor]').value = result[2];
-                    document.querySelector('input[name=editora]').value = result[3];
-                    document.querySelector('input[name=qtd]').value = result[4];
-                    document.querySelector('input[name=img]').value = result[5];
+                    document.querySelector('input[name=isbn]').value = result[1];
+                    document.querySelector('input[name=nome]').value = result[2];
+                    document.querySelector('input[name=autor]').value = result[3];
+                    document.querySelector('input[name=editora]').value = result[4];
+                    document.querySelector('input[name=qtd]').value = result[5];
+                    document.querySelector('input[name=img]').value = result[6];
 
 
                 } else {
                     document.querySelector('input[name=cod]').value = "";
+                    document.querySelector('input[name=isbn]').value = "";
                     document.querySelector('input[name=nome]').value = "";
                     document.querySelector('input[name=autor]').value = "";
                     document.querySelector('input[name=editora]').value = "";
@@ -283,6 +333,7 @@ function buscadados() {
 function enviaForm3() {
     let objLivro = document.getElementById("formLivro");
     let cod = document.getElementById("cod");
+    let isbn = document.getElementById("isbn");
     let nome = document.getElementById("nome");
     let autor = document.getElementById("autor");
     let editora = document.getElementById("editora");
@@ -290,14 +341,15 @@ function enviaForm3() {
     let img = document.getElementById("img");
 
 
-    erro1 = validaCodigo(cod);
-    erro2 = validaNome(nome);
-    erro3 = validaAutor(autor);
-    erro4= validaEditora(editora);
-    erro5 = validaQtd(qtd);
-    erro6 = validaLink(img);
+    let erro1 = validaCodigo(cod);
+    let erro2 = validaNome(nome);
+    let erro3 = validaAutor(autor);
+    let erro4= validaEditora(editora);
+    let erro5 = validaQtd(qtd);
+    let erro6 = validaLink(img);
+    let erro7 = validaIsbn(isbn);
 
-    erroForm = erro1+erro2+erro3+erro4+erro5+erro6;
+    let erroForm = erro1+erro2+erro3+erro4+erro5+erro6+erro7;
 
     if (erroForm == 0) {
         let xmlhttp = new XMLHttpRequest();
@@ -309,7 +361,7 @@ function enviaForm3() {
             }
 
         }
-        xmlhttp.open("GET", "http://localhost/4ADS/php/CONFIRMA_ALTERAÇÃO.php?codigo="+ objLivro.cod.value +
+        xmlhttp.open("GET", "http://localhost/4ADS/php/CONFIRMA_ALTERAÇÃO.php?codigo="+ objLivro.cod.value + "&isbn=" + objLivro.isbn.value +
             "&nome=" + objLivro.nome.value + "&autor=" + objLivro.autor.value + "&editora=" +
             objLivro.editora.value + "&quantidade=" + objLivro.qtd.value + "&img=" + objLivro.img.value,true);
         xmlhttp.send();
@@ -340,13 +392,14 @@ function enviaForm4() {
                     let result = JSON.parse(this.responseText);
                     var table = document.getElementById("table")
                     var a = document.createElement('a');
-                    var linkname = document.createTextNode(result[1]);
+                    var linkname = document.createTextNode(result[2]);
                     a.appendChild(linkname);
-                    a.href = "https://www.google.com/search?q=" + result[1];
+                    a.href = "https://www.google.com/search?q=" + result[2] + " " + result[3] ;
                     document.body.appendChild(a);
 
                     var linha = document.createElement("tr");
                     var campo_cod = document.createElement("td");
+                    var campo_isbn = document.createElement("td");
                     var campo_nome = document.createElement("td");
                     var campo_aut = document.createElement("td");
                     var campo_edit = document.createElement("td");
@@ -354,13 +407,15 @@ function enviaForm4() {
                     var campo_link = document.createElement("td");
 
                     var texto_cod = document.createTextNode(result[0]);
-                    var texto_nome = document.createTextNode(result[1]);
-                    var texto_aut = document.createTextNode(result[2]);
-                    var texto_edit = document.createTextNode(result[3]);
-                    var texto_qtd = document.createTextNode(result[4]);
-                    var texto_link = document.createTextNode(result[5]);
+                    var texto_isbn = document.createTextNode(result[1]);
+                    var texto_nome = document.createTextNode(result[2]);
+                    var texto_aut = document.createTextNode(result[3]);
+                    var texto_edit = document.createTextNode(result[4]);
+                    var texto_qtd = document.createTextNode(result[5]);
+                    var texto_link = document.createTextNode(result[6]);
 
                     campo_cod.appendChild(texto_cod);
+                    campo_isbn.appendChild(texto_isbn);
                     campo_nome.appendChild(texto_nome);
                     campo_aut.appendChild(texto_aut);
                     campo_edit.appendChild(texto_edit);
@@ -368,6 +423,7 @@ function enviaForm4() {
                     campo_link.appendChild(texto_link);
 
                     linha.appendChild(campo_cod);
+                    linha.appendChild(campo_isbn);
                     linha.appendChild(a)
                     linha.appendChild(campo_aut);
                     linha.appendChild(campo_edit);
@@ -381,7 +437,7 @@ function enviaForm4() {
                     var img = document.createElement('img');
                     img.width = '640px';
                     img.height='360px';
-                    img.src= result[5];
+                    img.src= result[6];
                     fig.appendChild(img);
 
 
@@ -412,6 +468,7 @@ function enviaForm5() {
     let tel = document.getElementById("tel");
     let curso = document.getElementById("curso");
     let datanasc = document.getElementById("datanasc");
+    let img = document.getElementById("img");
 
 
     erro1 = validaNome(nome);
@@ -420,8 +477,9 @@ function enviaForm5() {
     erro4= validaTel(tel);
     erro5 = validaCurso(curso);
     erro6 = validaData(datanasc);
+    erro7 = validaLink(img);
 
-    erroForm = erro1+erro2+erro3+erro4+erro5+erro6;
+    erroForm = erro1+erro2+erro3+erro4+erro5+erro6+erro7;
 
     if (erroForm == 0) {
         let xmlhttp = new XMLHttpRequest();
@@ -434,13 +492,15 @@ function enviaForm5() {
                 document.getElementById("tel").value = "";
                 document.getElementById("curso").value = "";
                 document.getElementById("datanasc").value = "";
+                document.getElementById("img").value = "";
                 document.getElementById("resposta").innerText = this.responseText;
             }
 
         }
         xmlhttp.open("GET", "http://localhost/4ADS/php/INSERIR_ALUNO.php?nome="+ objAluno.nome.value +
             "&mat=" + objAluno.mat.value + "&email=" + objAluno.email.value + "&tel=" +
-            objAluno.tel.value + "&curso=" + objAluno.curso.value + "&data=" + objAluno.datanasc.value,true);
+            objAluno.tel.value + "&curso=" + objAluno.curso.value + "&data=" + objAluno.datanasc.value
+            + "&img=" + objAluno.img.value,true);
         xmlhttp.send();
 
     }

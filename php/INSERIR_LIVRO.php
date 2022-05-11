@@ -1,6 +1,7 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $codigo = $_GET["codigo"];
+    $isbn = $_GET["isbn"];
     $nome = $_GET["nome"];
     $autor = $_GET["autor"];
     $editora = $_GET["editora"];
@@ -8,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $img = $_GET["img"];
 
     $codigoValido = 0;
+    $isbnValido = 0;
     $nomeValido = 0;
     $autorValido = 0;
     $editoraValido = 0;
@@ -18,6 +20,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if ($codigo != "" and ctype_digit($codigo))
     {
         $codigoValido = 1;
+    }
+
+    if (strlen("$isbn") == 13 and ctype_digit($isbn))
+    {
+        $isbnValido = 1;
     }
 
     if ($nome != "" and mb_check_encoding($nome, 'UTF-8'))
@@ -48,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 
 
-      if ($codigoValido==1 and $nomeValido==1 and $autorValido==1 and $editoraValido==1 and
+      if ($codigoValido==1 and $isbnValido==1 and $nomeValido==1 and $autorValido==1 and $editoraValido==1 and
         $quantidadeValido==1 and $imgValido==1) {
         $servidor = "localhost";
         $usuario = "root";
@@ -65,8 +72,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $result = $conn->query($sql);
 
         if ($result->num_rows == 0) {
-            $sql = "INSERT INTO `livros`(`cod`, `nome`, `autor`, `editora`, `qtdestoque`, `link`)
-            VALUES ('$codigo','$nome','$autor','$editora','$quantidade','$img')";
+            $sql = "INSERT INTO `livros`(`cod`, `isbn`, `nome`, `autor`, `editora`, `qtdestoque`, `link`)
+            VALUES ('$codigo','$isbn','$nome','$autor','$editora','$quantidade','$img')";
 
 
 

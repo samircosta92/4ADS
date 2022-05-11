@@ -66,7 +66,7 @@ echo "<div>
 </div>";
 
 } else {
-echo "Digite um ID Válido!<br>";
+echo "Digite um Código Válido!<br>";
 }
 }
 ?>
