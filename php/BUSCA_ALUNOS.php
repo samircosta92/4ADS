@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
         if ($result->num_rows == 0)
         {
-            echo json_encode("Não existe aluno com o código correspondente!");
+            echo json_encode("Não existe aluno com a matrícula correspondente!");
         }
         else{
             $linha = $result->fetch_assoc();
@@ -37,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $dados[3] = $linha["telefone"];
             $dados[4] = $linha["curso"];
             $dados[5] = $linha["datanasc"];
+            $dados[6] = $linha["link"];
 
 
             echo json_encode($dados);

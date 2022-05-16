@@ -665,7 +665,7 @@ function enviaForm6() {
 
 //BUSCAR ALUNO
 function enviaForm7() {
-    let objLivro = document.getElementById("formAluno");
+    let objAluno = document.getElementById("formAluno");
     let cod = document.getElementById("cod");
 
     erro = validaMatExc(cod);
@@ -684,41 +684,40 @@ function enviaForm7() {
 
                     let result = JSON.parse(this.responseText);
                     var table = document.getElementById("table")
-                    var a = document.createElement('a');
-                    var linkname = document.createTextNode(result[0]);
-                    a.appendChild(linkname);
-                    a.href = "https://www.google.com/search?q=" + result[0];
-                    document.body.appendChild(a);
 
 
                     var linha = document.createElement("tr");
-                    var campo_cod = document.createElement("td");
+                    var campo_mat = document.createElement("td");
                     var campo_nome = document.createElement("td");
-                    var campo_aut = document.createElement("td");
-                    var campo_edit = document.createElement("td");
-                    var campo_qtd = document.createElement("td");
+                    var campo_email = document.createElement("td");
+                    var campo_tel = document.createElement("td");
+                    var campo_curso = document.createElement("td");
+                    var campo_datanasc = document.createElement("td");
                     var campo_link = document.createElement("td");
 
 
-                    var texto_cod = document.createTextNode(result[1]);
+                    var texto_mat = document.createTextNode(result[1]);
                     var texto_nome = document.createTextNode(result[0]);
-                    var texto_aut = document.createTextNode(result[2]);
-                    var texto_edit = document.createTextNode(result[3]);
-                    var texto_qtd = document.createTextNode(result[4]);
-                    var texto_link = document.createTextNode(result[5]);
+                    var texto_email = document.createTextNode(result[2]);
+                    var texto_tel = document.createTextNode(result[3]);
+                    var texto_curso = document.createTextNode(result[4]);
+                    var texto_datanasc= document.createTextNode(result[5]);
+                    var texto_link = document.createTextNode(result[6]);
 
-                    campo_cod.appendChild(texto_cod);
+                    campo_mat.appendChild(texto_mat);
                     campo_nome.appendChild(texto_nome);
-                    campo_aut.appendChild(texto_aut);
-                    campo_edit.appendChild(texto_edit);
-                    campo_qtd.appendChild(texto_qtd);
+                    campo_email.appendChild(texto_email);
+                    campo_tel.appendChild(texto_tel);
+                    campo_curso.appendChild(texto_curso);
+                    campo_datanasc.appendChild(texto_datanasc);
                     campo_link.appendChild(texto_link);
 
-                    linha.appendChild(campo_cod);
-                    linha.appendChild(a);
-                    linha.appendChild(campo_aut);
-                    linha.appendChild(campo_edit);
-                    linha.appendChild(campo_qtd);
+                    linha.appendChild(campo_mat);
+                    linha.appendChild(campo_nome);
+                    linha.appendChild(campo_email);
+                    linha.appendChild(campo_tel);
+                    linha.appendChild(campo_curso);
+                    linha.appendChild(campo_datanasc);
                     linha.appendChild(campo_link);
 
 
@@ -728,7 +727,7 @@ function enviaForm7() {
                     var img = document.createElement('img');
                     img.width = '640px';
                     img.height='360px';
-                    img.src= result[5];
+                    img.src= result[6];
                     fig.appendChild(img);
 
 
@@ -744,7 +743,7 @@ function enviaForm7() {
         }
 
 
-        xmlhttp.open("GET", "http://localhost/4ADS/php/BUSCA_ALUNOS.php?codigo=" + objLivro.cod.value, true);
+        xmlhttp.open("GET", "http://localhost/4ADS/php/BUSCA_ALUNOS.php?codigo=" + objAluno.cod.value, true);
         xmlhttp.send();
 
     }
@@ -754,7 +753,7 @@ function enviaForm7() {
 //ALTERAR ALUNO
 
 function buscaAluno(str) {
-    let objLivro = document.getElementById("formAluno");
+    let objAluno = document.getElementById("formAluno");
     let cod = document.getElementById("mat1");
 
     erro = validaMat(cod);
@@ -777,6 +776,7 @@ function buscaAluno(str) {
                     document.querySelector('input[name=telefone]').value = result[3];
                     document.querySelector('input[name=curso]').value = result[4];
                     document.querySelector('input[name=datanasc]').value = result[5];
+                    document.querySelector('input[name=link]').value = result[6];
 
 
                 } else {
@@ -787,26 +787,28 @@ function buscaAluno(str) {
                     document.querySelector('input[name=telefone]').value = "";
                     document.querySelector('input[name=curso]').value = "";
                     document.querySelector('input[name=datanasc]').value = "";
+                    document.querySelector('input[name=link]').value = "";
 
                     document.getElementById("resposta").innerHTML = JSON.parse(this.responseText);
                 }
             }
 
         }
-        xmlhttp.open("GET", "http://localhost/4ADS/php/BUSCA_ALUNOS.PHP?codigo=" + objLivro.mat1.value, true);
+        xmlhttp.open("GET", "http://localhost/4ADS/php/BUSCA_ALUNOS.PHP?codigo=" + objAluno.mat1.value, true);
         xmlhttp.send();
     }
 
 }
 
 function enviaForm8() {
-    let objLivro = document.getElementById("formAluno");
+    let objAluno = document.getElementById("formAluno");
     let mat = document.getElementById("mat");
     let nome = document.getElementById("nome");
     let email = document.getElementById("email");
     let telefone = document.getElementById("telefone");
     let curso = document.getElementById("curso");
     let data = document.getElementById("datanasc");
+    let link = document.getElementById("link");
 
     erro1 = validaNome(nome);
     erro2 = validaMat(mat);
@@ -827,9 +829,10 @@ function enviaForm8() {
             }
 
         }
-        xmlhttp.open("GET", "http://localhost/4ADS/php/CONFIRMA_ALTERAÇÃO_ALUNO.php?mat="+ objLivro.mat.value +
-            "&nome=" + objLivro.nome.value + "&email=" + objLivro.email.value + "&telefone=" +
-            objLivro.telefone.value + "&curso=" + objLivro.curso.value + "&data=" + objLivro.datanasc.value,true);
+        xmlhttp.open("GET", "http://localhost/4ADS/php/CONFIRMA_ALTERAÇÃO_ALUNO.php?mat="+ objAluno.mat.value +
+            "&nome=" + objAluno.nome.value + "&email=" + objAluno.email.value + "&telefone=" +
+            objAluno.telefone.value + "&curso=" + objAluno.curso.value + "&data=" + objAluno.datanasc.value + "&link="
+            + objAluno.link.value,true);
         xmlhttp.send();
 
     }

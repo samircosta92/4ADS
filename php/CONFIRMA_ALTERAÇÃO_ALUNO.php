@@ -6,6 +6,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $telefone = $_GET["telefone"];
     $curso = $_GET["curso"];
     $data = $_GET["data"];
+    $link = $_GET["link"];
+
 
     $matriculaValida = 0;
     $nomeValido = 0;
@@ -62,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         }
 
         $sql = "UPDATE `alunos` SET `nome`='$nome',`matricula`='$matricula',`email`='$email',
-                       `telefone`='$telefone',`curso`='$curso',`datanasc`='$data'";
+                       `telefone`='$telefone',`curso`='$curso',`datanasc`='$data',`link`='$link'";
 
         if ($conn->query($sql) === TRUE) {
             echo "Alteração feita com sucesso!";
