@@ -15,13 +15,13 @@
 
     <form class="fieldclass" action="" method="post" name="livro" id="formLivro" >
         <fieldset  name="identificação" >
-            <label>Código:</label><input placeholder="digite 5 dígitos" type="number"  name="cod" onchange="completalink()" id="cod" placeholder="Digite 5 digitos" ><br><br>
-            <label>ISBN:</label><input type="text" name="isbn" id="isbn" placeholder="Digite apenas números"><br><br>
-            <label>Nome:</label><input type="text" name="nome" id="nome"><br><br>
-            <label>Autor:</label><input type="text" name="autor" id="autor"><br><br>
-            <label>Editora:</label><input type="text" name="editora" id="editora"><br><br>
-            <label>Quantidade:</label><input type="number"  name="qtd" id="qtd"><br><br>
-            <label>Link da Imagem:</label><input type="text" name="img" value="../imagens/" id="img"><br><br>
+            <label>Código:</label><span style="color: red;font-size: large">*</span><input placeholder="digite 5 dígitos" type="number"  name="cod" onchange="completalink()" id="cod" placeholder="Digite 5 digitos" ><br><br>
+            <label>ISBN:</label><span style="color: red;font-size: large">*</span><input type="text" name="isbn" id="isbn" placeholder="Digite apenas números"><br><br>
+            <label>Nome:</label><span style="color: red;font-size: large">*</span><input type="text" name="nome" id="nome"><br><br>
+            <label>Autor:</label><span style="color: red;font-size: large">*</span><input type="text" name="autor" id="autor"><br><br>
+            <label>Editora:</label><span style="color: red;font-size: large">*</span><input type="text" name="editora" id="editora"><br><br>
+            <label>Quantidade:</label><span style="color: red;font-size: large">*</span><input type="number"  name="qtd" id="qtd"><br><br>
+            <label>Link da Imagem:</label><span style="color: red;font-size: large">*</span><input type="text" name="img" value="../imagens/" id="img"><br><br>
             <input class="inputcolor" type="button" name="op" value="Inserir Livro" onclick="enviaForm()"><br><br>
             <figure style="text-align:left">
                 <a href="CRUD_ACERVO.html"><img src="../imagens/voltar.png" width="50px" height="35px"></a>

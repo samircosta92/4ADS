@@ -54,7 +54,7 @@ function completalink2()
     }else{
         document.getElementById("resposta").innerHTML = "";
         document.querySelector('input[name= img]').value= "";
-        document.querySelector('input[name= img]').value+= "imagens/" + document.getElementById("mat").value +".jpg";
+        document.querySelector('input[name= img]').value+= "../imagens/" + document.getElementById("mat").value +".jpg";
     }
 }
 
@@ -66,7 +66,7 @@ function completalink()
     }else{
         document.getElementById("resposta").innerHTML = "";
         document.querySelector('input[name= img]').value= "";
-        document.querySelector('input[name= img]').value+= "imagens/" + document.getElementById("cod").value +".jpg";
+        document.querySelector('input[name= img]').value+= "../imagens/" + document.getElementById("cod").value +".jpg";
     }
 }
 
@@ -434,9 +434,11 @@ function enviaForm4() {
                     table.appendChild(linha);
 
                     var fig = document.getElementById("fig");
-                    var img = document.createElement('img');
-                    img.width = '640px';
-                    img.height='360px';
+                    var img = document.getElementById("img");
+
+
+                    img.width = "150";
+                    img.height = "250";
                     img.src= result[6];
                     fig.appendChild(img);
 
@@ -724,9 +726,10 @@ function enviaForm7() {
                     table.appendChild(linha);
 
                     var fig = document.getElementById("fig");
-                    var img = document.createElement('img');
-                    img.width = '640px';
-                    img.height='360px';
+                    var img = document.getElementById("img");
+
+                    img.width = "150";
+                    img.height = "250";
                     img.src= result[6];
                     fig.appendChild(img);
 

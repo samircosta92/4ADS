@@ -99,7 +99,7 @@ table,tr,th,td {
 .classdiv1{
 	float: right;
 	width: 250%;
-	background-color: #FFD700;
+	background-color: white;
 	padding: 100px;
 	border: #000080 solid 1px;
 	margin:auto;
@@ -109,7 +109,7 @@ table,tr,th,td {
 .classdiv2{
 	float: left;
 	width: 250%;
-	background-color: #FFD700;
+	background-color: white;
 	padding: 100px;
 	border: #000080 solid 1px;
 }

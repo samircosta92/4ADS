@@ -25,7 +25,7 @@
 <form action="" method="post" name="Aluno" id="formAluno">
     <fieldset class="fieldclass" name="identificação">
         <legend>Buscar Aluno</legend><br>
-        <label>Matricula:</label><input type="number"  name="cod" id="cod"><br><br>
+        <label>Matricula:</label><span style="color: red;font-size: large">*</span><input type="number"  name="cod" id="cod"><br><br>
         <table id="table">
             <tr>
                 <th>Matricula</th>
@@ -37,7 +37,9 @@
                 <th>Link</th>
             </tr>
         </table>
-        <figure id="fig"></figure>
+        <figure id="fig">
+            <img id="img" width="0" height="0"/>
+        </figure>
     </fieldset>
     <input class="inputcolor" type="button" name="op" value="Buscar Aluno" onclick="enviaForm7()"><br>
     <span style="color:#000080;font-weight: bold" id="resposta"></span>
