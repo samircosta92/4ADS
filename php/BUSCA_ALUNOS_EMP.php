@@ -34,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $dados[0] = $linha["nome"];
             $dados[1] = $linha["curso"];
             $dados[2] = $linha["situacao"];
+            $dados[3] = $linha["link"];
 
             if($dados[2]==0){
                 $dados[2]="OK";

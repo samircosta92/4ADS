@@ -35,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $dados[1] = $linha["autor"];
             $dados[2] = $linha["qtdestoque"];
             $dados[3] = $linha["emprestados"];
+            $dados[4] = $linha["link"];
 
             if ($dados[2]==$dados[3]){
                 $dados[2]= "Não disponivel";

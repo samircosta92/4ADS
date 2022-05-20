@@ -864,6 +864,17 @@ function buscaAluno2(str){
                     document.querySelector('input[name=curso]').value = result[1];
                     document.querySelector('input[name=sitaluno]').value = result[2];
 
+                    var fig = document.getElementById("fig1");
+                    var img = document.getElementById("img1");
+
+
+                    img.width = "200";
+                    img.height = "120";
+                    img.src= result[3];
+                    fig.appendChild(img);
+
+                    //preencher o fig1 e o img1 com a imagem vinda do banco
+
                 } else {
 
                     document.querySelector('input[name=nomealuno]').value = "";
@@ -906,6 +917,15 @@ function buscadados2(str){
                     document.querySelector('input[name=nome]').value = result[0];
                     document.querySelector('input[name=autor]').value = result[1];
                     document.querySelector('input[name=sitautor]').value = result[2];
+
+                    var fig = document.getElementById("fig2");
+                    var img = document.getElementById("img2");
+
+
+                    img.width = "200";
+                    img.height = "120";
+                    img.src= result[4];
+                    fig.appendChild(img);
 
                 } else {
                     document.querySelector('input[name=nome]').value = "";
@@ -960,8 +980,25 @@ function enviaEmp() {
                 if (this.readyState == 4 && this.status == 200) {
                     document.querySelector('input[name=cod]').value = "";
                     document.querySelector('input[name=nome]').value = "";
+                    document.querySelector('input[name=autor]').value = "";
+                    document.querySelector('input[name=sitautor]').value = "";
+                    var img1 = document.getElementById("img1");
+
+                    img1.width = "0";
+                    img1.height = "0";
+                    img1.src= "0";
+
                     document.querySelector('input[name=mat]').value = "";
                     document.querySelector('input[name=nomealuno]').value = "";
+                    document.querySelector('input[name=curso]').value = "";
+                    document.querySelector('input[name=sitaluno]').value = "";
+
+                    var img2 = document.getElementById("img2");
+
+                    img2.width = "0";
+                    img2.height = "0";
+                    img2.src= "0";
+
                     document.getElementById("resposta3").innerText = this.responseText;
                 }
 
