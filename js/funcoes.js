@@ -868,12 +868,11 @@ function buscaAluno2(str){
                     var img = document.getElementById("img1");
 
 
-                    img.width = "200";
-                    img.height = "120";
+                    img.width = "120";
+                    img.height = "200";
                     img.src= result[3];
                     fig.appendChild(img);
 
-                    //preencher o fig1 e o img1 com a imagem vinda do banco
 
                 } else {
 
@@ -922,8 +921,8 @@ function buscadados2(str){
                     var img = document.getElementById("img2");
 
 
-                    img.width = "200";
-                    img.height = "120";
+                    img.width = "120";
+                    img.height = "200";
                     img.src= result[4];
                     fig.appendChild(img);
 
@@ -958,60 +957,67 @@ function enviaEmp() {
     let nomeA = document.getElementById("nomealuno");
     let mat = document.getElementById("mat");
 
-    console.log(cod.value);
-    console.log(nome.value);
-    console.log(mat.value);
-    console.log(nomeA.value);
+    document.getElementById("resposta3").innerText = "";
 
+    sitAluno = document.getElementById("sitaluno").value;
+    sitLivro = document.getElementById("sitautor").value;
 
-    erro1 = validaCodigo(cod);
-    erro2 = validaNome(nome);
-    erro3 = validaMatExc(mat);
-    erro4 = validaNome(nomeA);
-    erroForm = erro1 + erro2 + erro3 + erro4;
+    if (sitAluno!="OK" || sitLivro!="Disponivel"){
+        document.getElementById("resposta3").innerText = "Impossível realizar empréstimo!";
+        console.log(sitAluno);
+        console.log(sitLivro);
+    }else{
+        erro1 = validaCodigo(cod);
+        erro2 = validaNome(nome);
+        erro3 = validaMatExc(mat);
+        erro4 = validaNome(nomeA);
+        erroForm = erro1 + erro2 + erro3 + erro4;
 
-    if (document.getElementById("sitaluno").value=="OK" &&
-        document.getElementById("sitautor").value=="Disponivel") {
+        if (document.getElementById("sitaluno").value=="OK" &&
+            document.getElementById("sitautor").value=="Disponivel") {
 
-        if (erroForm == 0) {
-            let xmlhttp = new XMLHttpRequest();
-            console.log(this.readyState);
-            xmlhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.querySelector('input[name=cod]').value = "";
-                    document.querySelector('input[name=nome]').value = "";
-                    document.querySelector('input[name=autor]').value = "";
-                    document.querySelector('input[name=sitautor]').value = "";
-                    var img1 = document.getElementById("img1");
+            if (erroForm == 0) {
+                let xmlhttp = new XMLHttpRequest();
+                console.log(this.readyState);
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.querySelector('input[name=cod]').value = "";
+                        document.querySelector('input[name=nome]').value = "";
+                        document.querySelector('input[name=autor]').value = "";
+                        document.querySelector('input[name=sitautor]').value = "";
+                        var img1 = document.getElementById("img1");
 
-                    img1.width = "0";
-                    img1.height = "0";
-                    img1.src= "0";
+                        img1.width = "0";
+                        img1.height = "0";
+                        img1.src= "0";
 
-                    document.querySelector('input[name=mat]').value = "";
-                    document.querySelector('input[name=nomealuno]').value = "";
-                    document.querySelector('input[name=curso]').value = "";
-                    document.querySelector('input[name=sitaluno]').value = "";
+                        document.querySelector('input[name=mat]').value = "";
+                        document.querySelector('input[name=nomealuno]').value = "";
+                        document.querySelector('input[name=curso]').value = "";
+                        document.querySelector('input[name=sitaluno]').value = "";
 
-                    var img2 = document.getElementById("img2");
+                        var img2 = document.getElementById("img2");
 
-                    img2.width = "0";
-                    img2.height = "0";
-                    img2.src= "0";
+                        img2.width = "0";
+                        img2.height = "0";
+                        img2.src= "0";
 
-                    document.getElementById("resposta3").innerText = this.responseText;
+                        document.getElementById("resposta3").innerText = this.responseText;
+                    }
+
                 }
-
+                xmlhttp.open("GET", "http://localhost/4ADS/php/CONFIRMA_EMP.php?codigo=" + cod.value +
+                    "&nome=" + nome.value + "&mat=" + mat.value + "&nomealuno=" +
+                    nomeA.value, true);
+                xmlhttp.send();
             }
-            xmlhttp.open("GET", "http://localhost/4ADS/php/CONFIRMA_EMP.php?codigo=" + cod.value +
-                "&nome=" + nome.value + "&mat=" + mat.value + "&nomealuno=" +
-                nomeA.value, true);
-            xmlhttp.send();
+        }
+        else{
+            document.getElementById("resposta3").innerText = "Não é possível realizar o empréstimo";
         }
     }
-    else{
-        document.getElementById("resposta3").innerText = "Não é possível realizar o empréstimo";
-    }
+
+
 }
 
 

@@ -1,5 +1,6 @@
 <?php
-
+require_once "../dompdf/autoload.inc.php";
+use Dompdf\Dompdf;
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
@@ -27,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         die("Não foi possível estabelecer uma conexão!" . $conn->connect_error);
     }
 
-
+    /*INSERÇÃO DO EMPRESTIMO*/
     $sql = "INSERT INTO `emprestimo`(`matAluno`, `codLivro`, `dataEmp`, `dataDev`)
             VALUES ('$mat','$cod','$dataEmp','$dataDev')";
 
@@ -40,12 +41,16 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
         echo "Empréstimo realizado com sucesso!";
 
+        /*Pegando o emprestimo que foi inserido*/
         $sql = "SELECT * FROM `emprestimo` WHERE `matAluno`='$mat' AND `codLivro`='$cod' AND `Situacao`='0' ";
         $result = $conn->query($sql);
         $linha = $result->fetch_assoc();
+
+        //id do emprestimo
         $dados = $linha["idEmp"];
 
 
+        /*somando um ao numero de livros emprestados deste livro*/
         $sql = "SELECT * FROM `livros` WHERE `cod`='$cod'";
         $result = $conn->query($sql);
         $linha = $result->fetch_assoc();
@@ -55,37 +60,35 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $sql = "UPDATE `livros` SET `emprestados`='$dados2' WHERE `cod`='$cod'";
         $result = $conn->query($sql);
 
-
-        require('fpdf.php');
-        ob_start();
-
-        $pdf = new FPDF('P', 'pt', 'legal');
-
-        $pdf->AddPage();
+        $sql = "UPDATE `alunos` SET `situacao`=1 WHERE `matricula`='$mat'";
+        $result = $conn->query($sql);
 
 
-        $pdf->SetFont('Helvetica', 'I', 13);
 
-        $pdf->Cell(0, 50, 'Biblioteca Universitaria', 1, 1, 'C', false);//titulo
-        $pdf->Cell(0, 50, 'Recibo de Emprestimo', 1, 1, 'C', false);//subtitulo
-        $pdf->Cell(0, 50, 'Codigo do emprestimo: ' . $dados . '', 1, 1, 'L', false);
-        $pdf->Cell(250, 25, 'Aluno', 1, 0, 'L', false);
-        $pdf->Cell(0, 25, 'Livro', 1, 1, 'L', false);
-        $pdf->Cell(250, 25, 'Nome: ' . $nomealuno . '', 1, 0, 'L', false);
-        $pdf->Cell(0, 25, 'Nome: ' . $nomelivro . '', 1, 1, 'L', false);
-        $pdf->Cell(250, 25, 'Matricula: ' . $mat . '', 1, 0, 'L', false);
-        $pdf->Cell(0, 25, 'Codigo:' . $cod . '', 1, 1, 'L', false);
-        $pdf->Cell(250, 25, 'Data de emprestimo:' . $dataEmp . '', 1, 0, 'L', false);
-        $pdf->Cell(0, 25, 'Data de devolucao:' . $dataDev . '', 1, 1, 'L', false);
-        $pdf->Cell(0, 50, '           ', 0, 1, 'C', false);
-        $pdf->Cell(0, 35, 'Obs: Caso a devolucao seja feita alem do prazo, o aluno fica ciente de que estara sujeito a ', 0, 1, 'L', false);
-        $pdf->Cell(0, 0, 'restricoes em futuros emprestimos!', 0, 1, 'L', false);
+        $pdf = new DomPdf();
+        /*$html =
+            '<!DOCTYPE html>
+             <html>
+                 <head>
+                    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+                 </head>
+                 <body>
+                    <h2>Olá</h2>     
+                 </body>
+             </html> ';*/
+
+        $pdf -> loadHtml("<h2>Olá</h2>");
+        $pdf->render();
+        $pdf->stream("mypdf.pdf",array("Attachment" => false));
+        exit;
 
 
-        $pdf->Output('Empréstimo ' . $dados . '.pdf', 'D', true);
-        ob_end_flush();
+
+
+
     }
 }
+
 
 
 ?>
