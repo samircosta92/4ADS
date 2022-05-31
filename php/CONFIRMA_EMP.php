@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     } else {
 
-        echo "Empréstimo realizado com sucesso!";
+        //echo "Empréstimo realizado com sucesso!";
 
         /*Pegando o emprestimo que foi inserido*/
         $sql = "SELECT * FROM `emprestimo` WHERE `matAluno`='$mat' AND `codLivro`='$cod' AND `Situacao`='0' ";
@@ -58,31 +58,23 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $dados2 += 1;
 
         $sql = "UPDATE `livros` SET `emprestados`='$dados2' WHERE `cod`='$cod'";
-        $result = $conn->query($sql);
+        $result = $conn->query($sql) ;
 
         $sql = "UPDATE `alunos` SET `situacao`=1 WHERE `matricula`='$mat'";
         $result = $conn->query($sql);
 
 
 
-        $pdf = new DomPdf();
-        /*$html =
-            '<!DOCTYPE html>
-             <html>
-                 <head>
-                    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-                 </head>
-                 <body>
-                    <h2>Olá</h2>     
-                 </body>
-             </html> ';*/
+        $array = array();
 
-        $pdf -> loadHtml("<h2>Olá</h2>");
-        $pdf->render();
-        $pdf->stream("mypdf.pdf",array("Attachment" => false));
-        exit;
+        $array[0] = $mat;
+        $array[1] = $cod;
+        $array[2] = $dataEmp;
+        $array[3] = $dataDev;
+        $array[4] = $dados;
 
 
+        echo json_encode($array);
 
 
 

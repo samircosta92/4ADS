@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recibo de empréstimo</title>
+    <style>
+        .borda{
+            margin: 30px;
+            border: 5px solid black;
+            width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .topo{
+            border: 5px solid red;
+            height: 150px;
+            margin: 5px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .dados{
+            border-collapse: collapse;
+            width: 570px;
+            margin: 15px;
+        }
+        tr{
+            border: 2px solid #000000 ;
+        }
+        .observacoes{
+            border: 5px solid #FFFFFF;
+            height: 100px;
+            margin: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class='borda'>
+    <div class='topo'>
+        <figure>
+            <figcaption style='text-align: center'>Biblioteca universitária</figcaption>
+            <img src='../imagens/1920478300008.jpg' width='65px' height='30px' >
+            <p style='text-align: center'>Recibo de empréstimo</p>
+            <p style='text-align: center' >Data de emissão: <?$dataEMP</p>
+        </figure>
+    </div>
+    <table class='dados'>
+        <tr>
+            <th>Codigo do emprestimo:</th>
+            <th><?$id</th>
+        </tr>
+        <tr>
+            <th>Aluno:</th>
+            <th>Wesley Nathan Xavier da Silva</th>
+        </tr>
+        <tr>
+            <th>Matricula:</th>
+            <th><?$mat</th>
+        </tr>
+        <tr>
+            <th>Livro:</th>
+            <th>O homem que calculava</th>
+        </tr>
+        <tr>
+            <th>ISBN:</th>
+            <th>12345678</th>
+        </tr>
+        <tr>
+            <th>Data de empréstimo:</th>
+            <th><?$dataEMP</th>
+        </tr>
+        <tr>
+            <th>Data de devolução</th>
+            <th><?$dataDEV</th>
+        </tr>
+    </table>
+    <div class='observacoes'>
+        <p>Obs: Caso a devolucao seja feita além do prazo, o aluno fica ciente de que estara sujeito a restricoes em futuros emprestimos!</p>
+    </div>
+</div>
+</body>
+</html>
+
+
+

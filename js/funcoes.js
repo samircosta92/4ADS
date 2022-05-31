@@ -1002,7 +1002,11 @@ function enviaEmp() {
                         img2.height = "0";
                         img2.src= "0";
 
-                        document.getElementById("resposta3").innerText = this.responseText;
+                        let result = JSON.parse(this.responseText);
+                        window.location.href = "http://localhost/4ads/php/empPDF.php?matricula=" + result[0] +
+                            "&codigo=" + result[1] + "&dataEMP=" + result[2] + "&dataDev=" + result[3] +
+                            "&idEMP=" + result[4];
+
                     }
 
                 }
