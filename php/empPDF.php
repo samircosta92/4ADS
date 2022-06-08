@@ -10,6 +10,7 @@ require_once "../dompdf/autoload.inc.php";
 use Dompdf\Dompdf;
 $pdf = new DomPdf();
 $pdf -> loadHtml("
+<head>
 <title>Recibo de empréstimo</title>
 <style>
     .borda{
