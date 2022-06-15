@@ -1045,9 +1045,12 @@ function gerarRelatorios(relatorio){
 
 
 //FUNÇÃO PARA BUSCAR INFORMAÇÕES DO EMPRESTIMO
-function buscaEmpr(str){
+function buscaEmpr(){
+    let objForm = document.getElementById("mat");
 
-    if(validaMatExc(str)==1){
+    erro = 1;
+
+    if(erro==1){
         document.getElementById("resposta").innerText = "Matricula Inválida!";
     }else{
         let xmlhttp = new XMLHttpRequest();

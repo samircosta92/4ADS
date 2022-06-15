@@ -22,28 +22,17 @@
     $sql = "SELECT * FROM `alunos` WHERE `matricula`='$mat'";
     $result = $conn->query($sql);
 
-    if ($result->num_rows == 0)
-    {
-        echo json_encode("Não existe aluno com a matrícula correspondente!");
-    }
-    else{
-        $linha = $result->fetch_assoc();
-        $nomeAluno = $linha["nome"];
-    }
+    $linha = $result->fetch_assoc();
+    $nomeAluno = $linha["nome"];
 
     /*Buscando nome do livro*/
     $sql = "SELECT * FROM `livros` WHERE `cod`='$cod'";
     $result = $conn->query($sql);
 
-    if ($result->num_rows == 0)
-    {
-        echo json_encode("Não existe livro com o código correspondente!");
-    }
-    else{
-        $linha = $result->fetch_assoc();
-        $nomeLivro = $linha["nome"];
-        $isbnLivro = $linha["isbn"];
-    }
+    $linha = $result->fetch_assoc();
+    $nomeLivro = $linha["nome"];
+    $isbnLivro = $linha["isbn"];
+    $codigo = $linha["cod"];
 
     require_once "../dompdf/autoload.inc.php";
     use Dompdf\Dompdf;
@@ -61,7 +50,7 @@
         }
         .topo{
             border-bottom: 5px solid black;
-            height: 150px;
+            height: 110px;
             margin: 5px;
             margin-left: auto;
             margin-right: auto;
@@ -108,7 +97,7 @@
                 <th><?$nomeLivro</th>
             </tr>
             <tr>
-                <th>Isbn</th>
+                <th>Isbn:</th>
                 <th><?$isbnLivro</th>
             </tr>
             <tr>

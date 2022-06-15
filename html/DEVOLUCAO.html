@@ -24,7 +24,7 @@
     </header>
     <form class="fieldclass" action="">
         <fieldset>
-            <label>Matricula:</label><input onchange="buscaEmpr(this.value)" type="text" name="matricula" id="mat" ><br>
+            <label>Matricula:</label><input onchange="buscaEmpr()" type="number" name="matricula" id="mat" ><br>
 
             <legend>Buscar Aluno</legend><br>
             <table id="table">
@@ -39,7 +39,7 @@
             </table>
         </fieldset>
     </form>
-
+    <p style="color:#000080;font-weight: bold" id="resposta"></p>
     <footer style="margin-top: 400px">
         <h4>Samir Costa & Wesley Xavier - 5PJS - 2022.1</h4>
     </footer>
