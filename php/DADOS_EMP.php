@@ -12,12 +12,12 @@
         if ($conn->connect_error) {
             die("Não foi possível estabelecer uma conexão!" . $conn->connect_error);
         }
-        $sql = "SELECT * FROM `emprestimo` WHERE `matAluno`='$mat'";
+        $sql = "SELECT * FROM `emprestimo` WHERE `matAluno`='$mat' AND `Situacao`=0" ;
         $result = $conn->query($sql);
 
         if ($result->num_rows == 0)
         {
-            echo json_encode("Não existe livro com o código correspondente!");
+            echo json_encode("Não existe empréstimo pendente para esse aluno!");
         }else{
             $linha = $result->fetch_assoc();
 
@@ -28,7 +28,7 @@
             $dados[2] = $linha["codLivro"];
             $dados[3] = $linha["dataEmp"];
             $dados[4] = $linha["dataDev"];
-            $dados[5] = $linha["situacao"];
+            $dados[5] = $linha["Situacao"];
 
             if ($dados[5] == 0){
                 $dados[5]= "Emprestado";

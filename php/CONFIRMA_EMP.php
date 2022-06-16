@@ -14,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $hoje = new DateTime();//data de hoje
     $atual = new DateTime();//data de hoje
     $hoje->add($umDia); // Altera o valor de $hoje e essa passa a ser a data de devolução
-    $dataEmp = $atual->format('d/m/y');
-    $dataDev = $hoje->format('d/m/y');
+    $dataEmp = $atual->format('y-m-d');
+    $dataDev = $hoje->format('y-m-d');
 
     $servidor = "localhost";
     $usuario = "root";

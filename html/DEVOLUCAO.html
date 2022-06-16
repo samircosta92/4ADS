@@ -22,9 +22,9 @@
         <h2>SISTEMA PARA GERENCIAMENTO DA BIBLIOTECA</h2>
         <hr>
     </header>
-    <form class="fieldclass" action="">
+    <form class="fieldclass" action="../php/CONFIRMA_DEV.php" method="post" id="formDev">
         <fieldset>
-            <label>Matricula:</label><input onchange="buscaEmpr()" type="number" name="matricula" id="mat" ><br>
+            <label>Matricula:</label><input onchange="buscaEmpr()" type="number" name="mat" id="mat" ><br>
 
             <legend>Buscar Aluno</legend><br>
             <table id="table">
@@ -32,14 +32,15 @@
                     <th>Id empréstimo</th>
                     <th>Matricula aluno</th>
                     <th>Codigo Livro</th>
-                    <th>Data emprestimo</th>
-                    <th>Data devolução</th>
+                    <th>Data Empréstimo</th>
+                    <th>Data Devolução</th>
                     <th>Situação</th>
                 </tr>
             </table>
         </fieldset>
     </form>
     <p style="color:#000080;font-weight: bold" id="resposta"></p>
+    <a href="MENU.html"><img src="../imagens/voltar.png" width="50px" height="35px"></a>
     <footer style="margin-top: 400px">
         <h4>Samir Costa & Wesley Xavier - 5PJS - 2022.1</h4>
     </footer>
