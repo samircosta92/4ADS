@@ -1049,7 +1049,7 @@ function buscaEmpr(){
     let objForm = document.getElementById("formDev");
     let mat = document.getElementById("mat");
 
-    erro = validaMatExc(mat);
+    var erro = validaMatExc(mat);
 
     if(erro==1){
         document.getElementById("resposta").innerText = "Matricula Inválida!";

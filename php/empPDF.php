@@ -85,16 +85,8 @@
                 <th><?$id</th>
             </tr>
             <tr>
-                <th>Nome do Aluno:</th>
-                <th><?$nomeAluno</th>
-            </tr>
-            <tr>
                 <th>Matrícula:</th>
                 <th><?$mat</th>
-            </tr>
-            <tr>
-                <th>Nome do Livro:</th>
-                <th><?$nomeLivro</th>
             </tr>
             <tr>
                 <th>Isbn:</th>
