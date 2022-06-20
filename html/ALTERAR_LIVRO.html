@@ -15,18 +15,18 @@
   <form action="" method="post" name="livro" id="formLivro">
     <fieldset class="fieldclass" name="id">
       <legend>Informe o código do livro a ser alterado:</legend><br>
-      <label>Código:</label><span style="color: red;font-size: large">*</span><input onchange="buscadados(this.value)" type="number"  name="cod1" id="cod1"><br><br>
+      <label>Código:</label><span style="color: red;font-size: large">*</span><input onchange="buscadados(this.value)" type="number"  name="cod1" id="cod1" placeholder="Digite 5 digitos"><br><br>
     </fieldset>
     <p style="color:#000080;font-weight: bold"id="resposta"></p>
     <fieldset class="fieldclass" name="identificação">
       <legend>Dados do Livro</legend><br>
-      <label>Código:</label><input type="number"  name="cod" id="cod" placeholder="Digite 5 digitos" disabled="disabled"><br><br>
-      <label>ISBN:</label><input type="text"  name="isbn" id="isbn" placeholder="Digite apenas números" disabled="disabled"><br><br>
+      <label>Código:</label><input type="number"  name="cod" id="cod"  disabled="disabled" style="color: lightgray"><br><br>
+      <label>ISBN:</label><input type="text"  name="isbn" id="isbn"  disabled="disabled" style="color: lightgray"><br><br>
       <label>Nome:</label><input type="text" name="nome" id="nome"><br><br>
       <label>Autor:</label><input type="text" name="autor" id="autor"><br><br>
       <label>Editora:</label><input type="text" name="editora" id="editora"><br><br>
       <label>Quantidade:</label><input type="number" name="qtd" id="qtd"><br><br>
-      <label>Link da Imagem:</label><input type="text" name="img" id="img" disabled="disabled"><br><br>
+      <label>Link da Imagem:</label><input type="text" name="img" id="img" disabled="disabled" style="color: lightgray"><br><br>
       <input class="inputcolor" type="button" name="op" value="Alterar" onclick="enviaForm3()">
     </fieldset>
   </form>

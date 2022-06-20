@@ -28,6 +28,13 @@
             $dados[2] = $linha["codLivro"];
             $dados[3] = $linha["dataEmp"];
             $dados[4] = $linha["dataDev"];
+
+            $data1 = new DateTime($dados[3]);
+            $data2 = new DateTime($dados[4]);
+
+            $dados[3] = $data1->format('d/m/y');
+            $dados[4] = $data2->format('d/m/y');
+
             $dados[5] = $linha["Situacao"];
 
             if ($dados[5] == 0){

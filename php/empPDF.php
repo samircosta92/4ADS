@@ -34,6 +34,12 @@
     $isbnLivro = $linha["isbn"];
     $codigo = $linha["cod"];
 
+    $data1 = new DateTime($dataEMP);
+    $data2 = new DateTime($dataDEV);
+
+    $data1 = $data1->format('d/m/y');
+    $data2 = $data2->format('d/m/y');
+
     require_once "../dompdf/autoload.inc.php";
     use Dompdf\Dompdf;
     $pdf = new DomPdf();
@@ -76,7 +82,7 @@
                 <figure>
                     <figcaption style='text-align: center'>Biblioteca Universitária</figcaption>
                     <p style='text-align: center'>Recibo de empréstimo</p>
-                    <p style='text-align: center' >Data de emissão: <?$dataEMP</p>
+                    <p style='text-align: center' >Data de emissão: <?$data1</p>
                 </figure>   
         </div>
         <table class='dados'>
@@ -94,11 +100,11 @@
             </tr>
             <tr>
                 <th>Data de empréstimo:</th>
-                <th><?$dataEMP</th>
+                <th><?$data1</th>
             </tr>
             <tr>
                 <th>Data de devolução</th>
-                <th><?$dataDEV</th>
+                <th><?$data2</th>
             </tr>           
         </table>
         <div class='observacoes'>

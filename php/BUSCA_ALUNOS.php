@@ -36,9 +36,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $dados[2] = $linha["email"];
             $dados[3] = $linha["telefone"];
             $dados[4] = $linha["curso"];
-            $dados[5] = $linha["datanasc"];
-            $dados[6] = $linha["link"];
 
+            $dados[5] = $linha["datanasc"];
+            $data = new DateTime($dados[5]);
+            $dados[5] = $data->format('d/m/y');
+
+            $dados[6] = $linha["link"];
 
             echo json_encode($dados);
         }

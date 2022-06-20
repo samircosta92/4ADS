@@ -37,7 +37,7 @@ function enviaForm() {
             }
 
         }
-        xmlhttp.open("GET", "http://localhost/4ADS/php/INSERIR_LIVRO.php?codigo="+objLivro.cod.value+"&isbn=" + objLivro.isbn.value
+        xmlhttp.open("GET", "http://localhost/5PJS/php/INSERIR_LIVRO.php?codigo="+objLivro.cod.value+"&isbn=" + objLivro.isbn.value
             +"&nome=" + objLivro.nome.value + "&autor=" + objLivro.autor.value + "&editora=" +
             objLivro.editora.value + "&quantidade=" + objLivro.qtd.value + "&img=" + objLivro.img.value,true);
         xmlhttp.send();
@@ -262,7 +262,7 @@ function enviaForm2() {
         }
 
 
-        xmlhttp.open("GET", "http://localhost/4ADS/php/BUSCA_LIVROS.php?codigo=" + objLivro.cod.value, true);
+        xmlhttp.open("GET", "http://localhost/5PJS/php/BUSCA_LIVROS.php?codigo=" + objLivro.cod.value, true);
         xmlhttp.send();
     }
 
@@ -324,7 +324,7 @@ function buscadados() {
             }
 
         }
-        xmlhttp.open("GET", "http://localhost/4ADS/php/BUSCA_LIVROS.php?codigo=" + objLivro.cod1.value, true);
+        xmlhttp.open("GET", "http://localhost/5PJS/php/BUSCA_LIVROS.php?codigo=" + objLivro.cod1.value, true);
         xmlhttp.send();
     }
 
@@ -361,7 +361,7 @@ function enviaForm3() {
             }
 
         }
-        xmlhttp.open("GET", "http://localhost/4ADS/php/CONFIRMA_ALTERAÇÃO.php?codigo="+ objLivro.cod.value + "&isbn=" + objLivro.isbn.value +
+        xmlhttp.open("GET", "http://localhost/5PJS/php/CONFIRMA_ALTERAÇÃO.php?codigo="+ objLivro.cod.value + "&isbn=" + objLivro.isbn.value +
             "&nome=" + objLivro.nome.value + "&autor=" + objLivro.autor.value + "&editora=" +
             objLivro.editora.value + "&quantidade=" + objLivro.qtd.value + "&img=" + objLivro.img.value,true);
         xmlhttp.send();
@@ -454,7 +454,7 @@ function enviaForm4() {
         }
 
 
-        xmlhttp.open("GET", "http://localhost/4ADS/php/BUSCA_LIVROS.php?codigo=" + objLivro.cod.value, true);
+        xmlhttp.open("GET", "http://localhost/5PJS/php/BUSCA_LIVROS.php?codigo=" + objLivro.cod.value, true);
         xmlhttp.send();
 
     }
@@ -499,7 +499,7 @@ function enviaForm5() {
             }
 
         }
-        xmlhttp.open("GET", "http://localhost/4ADS/php/INSERIR_ALUNO.php?nome="+ objAluno.nome.value +
+        xmlhttp.open("GET", "http://localhost/5PJS/php/INSERIR_ALUNO.php?nome="+ objAluno.nome.value +
             "&mat=" + objAluno.mat.value + "&email=" + objAluno.email.value + "&tel=" +
             objAluno.tel.value + "&curso=" + objAluno.curso.value + "&data=" + objAluno.datanasc.value
             + "&img=" + objAluno.img.value,true);
@@ -655,7 +655,7 @@ function enviaForm6() {
 
         }
         console.log(objAluno.cod.value);
-        xmlhttp.open("GET", "http://localhost/4ADS/php/BUSCA_ALUNOS.php?codigo=" + objAluno.cod.value, true);
+        xmlhttp.open("GET", "http://localhost/5PJS/php/BUSCA_ALUNOS.php?codigo=" + objAluno.cod.value, true);
         xmlhttp.send();
     }
 }
@@ -746,7 +746,7 @@ function enviaForm7() {
         }
 
 
-        xmlhttp.open("GET", "http://localhost/4ADS/php/BUSCA_ALUNOS.php?codigo=" + objAluno.cod.value, true);
+        xmlhttp.open("GET", "http://localhost/5PJS/php/BUSCA_ALUNOS.php?codigo=" + objAluno.cod.value, true);
         xmlhttp.send();
 
     }
@@ -797,7 +797,7 @@ function buscaAluno(str) {
             }
 
         }
-        xmlhttp.open("GET", "http://localhost/4ADS/php/BUSCA_ALUNOS.PHP?codigo=" + objAluno.mat1.value, true);
+        xmlhttp.open("GET", "http://localhost/5PJS/php/BUSCA_ALUNOS.PHP?codigo=" + objAluno.mat1.value, true);
         xmlhttp.send();
     }
 
@@ -832,7 +832,7 @@ function enviaForm8() {
             }
 
         }
-        xmlhttp.open("GET", "http://localhost/4ADS/php/CONFIRMA_ALTERAÇÃO_ALUNO.php?mat="+ objAluno.mat.value +
+        xmlhttp.open("GET", "http://localhost/5PJS/php/CONFIRMA_ALTERAÇÃO_ALUNO.php?mat="+ objAluno.mat.value +
             "&nome=" + objAluno.nome.value + "&email=" + objAluno.email.value + "&telefone=" +
             objAluno.telefone.value + "&curso=" + objAluno.curso.value + "&data=" + objAluno.datanasc.value + "&link="
             + objAluno.link.value,true);
@@ -889,7 +889,7 @@ function buscaAluno2(str){
             }
 
         }
-        xmlhttp.open("GET", "http://localhost/4ADS/php/BUSCA_ALUNOS_EMP.PHP?matricula=" + objAluno.mat.value, true);
+        xmlhttp.open("GET", "http://localhost/5PJS/php/BUSCA_ALUNOS_EMP.PHP?matricula=" + objAluno.mat.value, true);
         xmlhttp.send();
     }
 }
@@ -941,7 +941,7 @@ function buscadados2(str){
             }
 
         }
-        xmlhttp.open("GET", "http://localhost/4ADS/php/BUSCA_LIVROS_EMP.php?codigo=" + objLivro.cod.value, true);
+        xmlhttp.open("GET", "http://localhost/5PJS/php/BUSCA_LIVROS_EMP.php?codigo=" + objLivro.cod.value, true);
         xmlhttp.send();
     }
 }
@@ -1003,14 +1003,14 @@ function enviaEmp() {
                         img2.src= "0";
 
                         let result = JSON.parse(this.responseText);
-                        window.location.href = "http://localhost/4ads/php/empPDF.php?matricula=" + result[0] +
+                        window.location.href = "http://localhost/5PJS/php/empPDF.php?matricula=" + result[0] +
                             "&codigo=" + result[1] + "&dataEMP=" + result[2] + "&dataDev=" + result[3] +
                             "&idEMP=" + result[4];
 
                     }
 
                 }
-                xmlhttp.open("GET", "http://localhost/4ADS/php/CONFIRMA_EMP.php?codigo=" + cod.value +
+                xmlhttp.open("GET", "http://localhost/5PJS/php/CONFIRMA_EMP.php?codigo=" + cod.value +
                     "&nome=" + nome.value + "&mat=" + mat.value + "&nomealuno=" +
                     nomeA.value, true);
                 xmlhttp.send();
@@ -1038,7 +1038,7 @@ function gerarRelatorios(relatorio){
         }
 
     }
-    xmlhttp.open("GET", "http://localhost/4ADS/php/GERA_PDF.php?relatorio=" + relatorio, true);
+    xmlhttp.open("GET", "http://localhost/5PJS/php/GERA_PDF.php?relatorio=" + relatorio, true);
     xmlhttp.send();
 
 }
@@ -1111,7 +1111,7 @@ function buscaEmpr(){
             }
 
         }
-        xmlhttp.open("GET", "http://localhost/4ADS/php/DADOS_EMP.php?matricula=" + objForm.mat.value, true);
+        xmlhttp.open("GET", "http://localhost/5PJS/php/DADOS_EMP.php?matricula=" + objForm.mat.value, true);
         xmlhttp.send();
     }
 
@@ -1156,7 +1156,7 @@ function enviaCadastro(){
             }
 
         }
-        xmlhttp.open("GET", "http://localhost/4ADS/php/INSERIR_USUÁRIO.php?nome="+ objUsuario.nome.value +
+        xmlhttp.open("GET", "http://localhost/5PJS/php/INSERIR_USUÁRIO.php?nome="+ objUsuario.nome.value +
             "&senha=" + objUsuario.senha.value + "&email=" + objUsuario.email.value,true);
         xmlhttp.send();
 
@@ -1189,7 +1189,7 @@ function enviaLogin(){
 
                 if(JSON.parse(this.responseText) == "Ok" )
                 {
-                    window.location.href = "http://localhost/4ads/html/MENU.html"
+                    window.location.href = "http://localhost/5PJS/html/MENU.html"
                 }
                 else
                 {
@@ -1201,7 +1201,7 @@ function enviaLogin(){
             }
 
         }
-        xmlhttp.open("GET", "http://localhost/4ADS/php/LOGIN.php?nome="+ objLogin.nome.value +
+        xmlhttp.open("GET", "http://localhost/5PJS/php/LOGIN.php?nome="+ objLogin.nome.value +
             "&senha=" + objLogin.senha.value,true);
         xmlhttp.send();
 
